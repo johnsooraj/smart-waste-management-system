@@ -1,7 +1,7 @@
 ## Clean City
-academic project for my friend
+Academic project for my friend
 
-This project focus on using Fuzzy Logic Algorithm in action.
+This project focus on using _Fuzzy Logic_ Algorithm in action.
 
 Technologies:
   1.  Spring Boot 2.2.0 MI
