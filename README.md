@@ -1,4 +1,4 @@
-# clean-city
+## Clean City
 academic project for my friend
 
 This project focus on using Fuzzy Logic Algorithm in action.
