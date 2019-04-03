@@ -12,6 +12,8 @@ public class UserDetails {
 	private Byte age;
 	private String phone;
 
+	private UserAddress userAddress;
+
 	public UserDetails() {
 
 	}
@@ -54,6 +56,14 @@ public class UserDetails {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public UserAddress getUserAddress() {
+		return userAddress;
+	}
+
+	public void setUserAddress(UserAddress userAddress) {
+		this.userAddress = userAddress;
 	}
 
 	@Override
