@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "spring.data.mongodb.repositores.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.data.mongodb.repositores.enabled'"
+  },
+  {
+    "name": "spring.data.mongodb.prot",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.data.mongodb.prot'"
+  },
+  {
+    "name": "spring.port",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.port'"
+  }
+]}

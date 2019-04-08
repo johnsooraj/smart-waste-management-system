@@ -38,9 +38,6 @@ public class UserServiceImpl implements UserService {
 		userDetailRepo.save(u1);
 		userDetailRepo.save(u2);
 		userDetailRepo.save(u3);
-		
-		userDetailRepo.findByFirstname("", PageRequest.of(10, 10));
-		
 	}
 
 }
