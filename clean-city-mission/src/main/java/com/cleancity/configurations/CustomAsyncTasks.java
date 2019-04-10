@@ -20,6 +20,7 @@ public class CustomAsyncTasks {
 
 	@Autowired
 	CustomerBinDataRepository customerBinRepo;
+	
 
 	@Autowired
 	WasteBinRepository binRepo;
