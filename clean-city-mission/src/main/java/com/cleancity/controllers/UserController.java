@@ -34,7 +34,7 @@ public class UserController {
 
 	@PostMapping
 	public UserDetails saveUserDetails(@RequestBody UserDetails userData) {
-		return null;
+		return userService.saveNewUserUser(userData);
 	}
 
 	@PutMapping

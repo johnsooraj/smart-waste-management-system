@@ -11,6 +11,10 @@ public interface WasteBinService {
 	public WasteBin findByAddressLine(String str);
 
 	public WasteBin findByPincode(Long code);
-	
+
 	public WasteBin saveWasteBin(WasteBin bin);
+
+	public WasteBin getWasteBinById(String id);
+
+	public Object updateUserUsage(String userId, String binId, int usage) throws Exception;
 }

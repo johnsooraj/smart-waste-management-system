@@ -1,9 +1,9 @@
 package com.cleancity.user.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.cleancity.user.document.UserAddress;
@@ -24,20 +24,32 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void addDummyData() {
-		
-		UserAddress address  = new  UserAddress();
+
+		UserAddress address = new UserAddress();
 		address.setAddressLine1("njallor");
 		address.setPincode(686671l);
 		//
-		
+
 		UserDetails u1 = new UserDetails(null, "john", (byte) 23, "473684gbdfg89");
 		UserDetails u2 = new UserDetails(null, "sooraj", (byte) 25, "47368bdfbdf489");
 		UserDetails u3 = new UserDetails(null, "xavier", (byte) 20, "47368bdxbf489");
 		u1.setUserAddress(address);
-		
+
 		userDetailRepo.save(u1);
 		userDetailRepo.save(u2);
 		userDetailRepo.save(u3);
+	}
+
+	@Override
+	public UserDetails saveNewUserUser(UserDetails details) {
+		UserDetails user = userDetailRepo.save(details);
+		return user;
+	}
+
+	@Override
+	public UserDetails fetchUserDetails(String id) {
+		Optional<UserDetails> user = userDetailRepo.findById(id);
+		return user.isPresent() ? user.get() : null;
 	}
 
 }
