@@ -3,6 +3,7 @@
 api/bin GET -fetch all bins
 api/bin POST -save new bin a location, with JSON Body in request
 api/bin/usage/{userId}/{binId}/{usage} GET -for usage update from IOT device
+api/bin/clear-bin/{binId} GET - to clear current usage of bin
 
 api/user GET -fetch all users
 api/user/{userId} GET -fetch user by id
