@@ -11,6 +11,7 @@ public class UserDetails {
 	private String name;
 	private Byte age;
 	private String phone;
+	private Double binCredit = 00.00;
 
 	private UserAddress userAddress;
 
@@ -64,6 +65,14 @@ public class UserDetails {
 
 	public void setUserAddress(UserAddress userAddress) {
 		this.userAddress = userAddress;
+	}
+
+	public Double getBinCredit() {
+		return binCredit;
+	}
+
+	public void setBinCredit(Double binCredit) {
+		this.binCredit = binCredit;
 	}
 
 	@Override

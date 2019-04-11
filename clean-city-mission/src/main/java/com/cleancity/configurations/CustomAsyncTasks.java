@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import com.cleancity.wastebin.repository.CustomerBinDataRepository;
+import com.cleancity.wastebin.document.WasteBin;
 import com.cleancity.wastebin.repository.WasteBinRepository;
 
 @EnableAsync
@@ -19,8 +19,7 @@ public class CustomAsyncTasks {
 	Logger logger = Logger.getLogger(getClass());
 
 	@Autowired
-	CustomerBinDataRepository customerBinRepo;
-	
+	HttpPostNotification tapNotification;
 
 	@Autowired
 	WasteBinRepository binRepo;
@@ -49,5 +48,14 @@ public class CustomAsyncTasks {
 	@Scheduled(cron = "*/10 * * * * *")
 	public void checkBinStatusForTenSecondsIntervel() {
 		logger.info("scheduled task running");
+		WasteBin bin = binRepo.findAll().get(0);
+		tapNotification.buildNotificationBody(
+				"f7e7oZfxl9s:APA91bFT_W9GrwEpHGyFPSyh3Ny8g8VhdIAGIOYaslzFKhtyWNLwXBkAuxhri6ao2s5iAauUScUttmY5FAX1FrMoSMUH2yCvTOE_hAU7FwCHhe69TlmqVsfdBmnLMEQriWAKGgWDsbRJ",
+				binRepo.findAll());
+		tapNotification.buildNotificationBody(
+				"f7e7oZfxl9s:APA91bFT_W9GrwEpHGyFPSyh3Ny8g8VhdIAGIOYaslzFKhtyWNLwXBkAuxhri6ao2s5iAauUScUttmY5FAX1FrMoSMUH2yCvTOE_hAU7FwCHhe69TlmqVsfdBmnLMEQriWAKGgWDsbRJ",
+				bin);
+		if (tapNotification.sendNotification()) {
+		}
 	}
 }

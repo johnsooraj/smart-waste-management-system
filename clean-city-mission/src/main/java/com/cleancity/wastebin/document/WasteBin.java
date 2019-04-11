@@ -1,6 +1,6 @@
 package com.cleancity.wastebin.document;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,6 +11,8 @@ public class WasteBin {
 	@Id
 	private String id;
 
+	private Double binCurrentCapacity = 00.00;
+
 	private String addressLine1;
 	private String addressLine2;
 	private String addressLine3;
@@ -19,13 +21,19 @@ public class WasteBin {
 	private Long pincode;
 	private String geolocation;
 
-	private Timestamp timestamp;
-	private Timestamp createDate;
+	private Date timestamp;
+	private Date createDate;
 
 	private byte flag;
 
 	public WasteBin() {
 
+	}
+
+	public WasteBin(String id, Long pincode) {
+		super();
+		this.id = id;
+		this.pincode = pincode;
 	}
 
 	public WasteBin(String addressLine3, Long pincode, String geolocation) {
@@ -92,19 +100,19 @@ public class WasteBin {
 		this.geolocation = geolocation;
 	}
 
-	public Timestamp getTimestamp() {
+	public Date getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Timestamp timestamp) {
+	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
 
-	public Timestamp getCreateDate() {
+	public Date getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Timestamp createDate) {
+	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 
@@ -114,6 +122,14 @@ public class WasteBin {
 
 	public void setFlag(byte flag) {
 		this.flag = flag;
+	}
+
+	public Double getBinCurrentCapacity() {
+		return binCurrentCapacity;
+	}
+
+	public void setBinCurrentCapacity(Double binCurrentCapacity) {
+		this.binCurrentCapacity = binCurrentCapacity;
 	}
 
 	@Override

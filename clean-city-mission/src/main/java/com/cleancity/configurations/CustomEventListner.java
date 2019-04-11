@@ -8,6 +8,9 @@ import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import com.cleancity.user.document.UserAddress;
+import com.cleancity.user.document.UserDetails;
+import com.cleancity.user.repository.UserDetailRepository;
 import com.cleancity.wastebin.document.WasteBin;
 import com.cleancity.wastebin.repository.WasteBinRepository;
 
@@ -16,6 +19,9 @@ public class CustomEventListner {
 
 	@Autowired
 	WasteBinRepository binRepo;
+
+	@Autowired
+	UserDetailRepository userRepo;
 
 	public static final List<WasteBin> binLocations = new ArrayList<WasteBin>();
 
@@ -28,11 +34,26 @@ public class CustomEventListner {
 		binLocations.add(new WasteBin("Kacheripady", 123456l, "9.985595, 76.281471"));
 		binLocations.add(new WasteBin("Kaloor", 123456l, "9.994821, 76.292121"));
 		this.addFixedBinLocations();
+		this.addDummyUser();
 	}
 
 	private void addFixedBinLocations() {
 		binLocations.forEach(bins -> {
 			binRepo.save(bins);
 		});
+	}
+
+	private void addDummyUser() {
+		UserDetails details = new UserDetails();
+		UserAddress address = new UserAddress();
+		details.setAge((byte) 23);
+		details.setName("john");
+		details.setPhone("9447599402");
+		address.setPincode(686671l);
+		address.setGeolocation("");
+		address.setAddressLine1("njaloor house");
+		details.setUserAddress(address);
+		userRepo.save(details);
+
 	}
 }

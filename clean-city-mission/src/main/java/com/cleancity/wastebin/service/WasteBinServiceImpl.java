@@ -1,20 +1,25 @@
 package com.cleancity.wastebin.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cleancity.configurations.FirebaseAdminConfig;
 import com.cleancity.user.document.UserDetails;
 import com.cleancity.user.repository.UserDetailRepository;
-import com.cleancity.wastebin.document.CustomerBinData;
+import com.cleancity.wastebin.document.BinTracker;
 import com.cleancity.wastebin.document.WasteBin;
-import com.cleancity.wastebin.repository.CustomerBinDataRepository;
+import com.cleancity.wastebin.repository.BinTrackerRepository;
 import com.cleancity.wastebin.repository.WasteBinRepository;
 
 @Service
 public class WasteBinServiceImpl implements WasteBinService {
+
+	static Logger logger = Logger.getLogger(FirebaseAdminConfig.class.getName());
 
 	@Autowired
 	WasteBinRepository binRepo;
@@ -23,7 +28,7 @@ public class WasteBinServiceImpl implements WasteBinService {
 	UserDetailRepository userRepo;
 
 	@Autowired
-	CustomerBinDataRepository userBinRepo;
+	BinTrackerRepository binTrackRepo;
 
 	@Override
 	public WasteBin findByPincode(Long code) {
@@ -52,32 +57,46 @@ public class WasteBinServiceImpl implements WasteBinService {
 	}
 
 	@Override
-	public Object updateUserUsage(String userId, String binId, int usage) throws Exception {
-		Optional<UserDetails> details = userRepo.findById(userId);
+	public Object updateUserUsage(String userId, String binId, Double usage) throws Exception {
+
+		// fetch bin and update new status/usage data
+		// fetch user and debt the balance
+		Optional<UserDetails> user = userRepo.findById(userId);
 		Optional<WasteBin> wasteBin = binRepo.findById(binId);
 
-		if (details.isPresent() && wasteBin.isPresent()) {
-			CustomerBinData binData = new CustomerBinData();
-			binData.setCustomerId(details.get().getId());
-			binData.setBinId(wasteBin.get().getId());
-			Optional<CustomerBinData> optional = userBinRepo.findByCustomerIdAndBinId(binData.getCustomerId(),
-					binData.getBinId());
-			if (optional.isPresent()) {
-				optional.get().setBinCurrentUsage(optional.get().getBinCurrentUsage() + usage);
-				userBinRepo.save(optional.get());
-				return optional.get();
-			} else {
-				CustomerBinData data = new CustomerBinData();
-				data.setCustomerId(userId);
-				data.setBinId(binId);
-				userBinRepo.save(data);
-				return data;
-			}
-			// binData.setBinCurrentUsage(binCurrentUsage);
+		if (user.isPresent() && wasteBin.isPresent()) {
+
+			WasteBin binData = wasteBin.get();
+			UserDetails userData = user.get();
+
+			// current usage of user * RS:10
+			Double userUsage = usage - binData.getBinCurrentCapacity();
+			userData.setBinCredit(userData.getBinCredit() - (10 * userUsage));
+
+			// bin capacity will always increase as it use
+			binData.setBinCurrentCapacity(usage);
+			binData.setTimestamp(new Date());
+
+			// update bin and use data
+			binRepo.save(binData);
+			userRepo.save(userData);
+
+			this.addBinTracker(binId, userId, userUsage);
+
 		} else {
 			throw new Exception("invalid bin or user");
 		}
+		return null;
+	}
 
+	private void addBinTracker(String binId, String userId, Double usage) {
+		binTrackRepo.save(new BinTracker(binId, userId, usage));
+		logger.info("bin-tracker updated");
+	};
+
+	@Override
+	public boolean clearBin(String binId) {
+		return binRepo.updateBinCurrentCapacity(binId);
 	}
 
 }

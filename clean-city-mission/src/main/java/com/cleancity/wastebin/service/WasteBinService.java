@@ -16,5 +16,7 @@ public interface WasteBinService {
 
 	public WasteBin getWasteBinById(String id);
 
-	public Object updateUserUsage(String userId, String binId, int usage) throws Exception;
+	public Object updateUserUsage(String userId, String binId, Double usage) throws Exception;
+	
+	public boolean clearBin(String binId);
 }

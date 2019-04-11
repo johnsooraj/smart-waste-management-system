@@ -46,4 +46,10 @@ public class UserController {
 	public boolean deleteUserDetails(@PathVariable String userId) {
 		return true;
 	}
+
+	@GetMapping("/{userId}/{rate}")
+	public Object rechargeUserCredit(@PathVariable String userId, @PathVariable Double rate) {
+		return userService.updateUserCredit(userId, rate);
+	}
+
 }

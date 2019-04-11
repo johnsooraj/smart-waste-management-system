@@ -34,10 +34,16 @@ public class BinController {
 
 	// update usage for IOT device
 	@GetMapping("/usage/{userId}/{binId}/{usage}")
-	public Object updateUserUsage(@PathVariable("") String userId, @PathVariable("binId") String binId,
-			@PathVariable int usage) throws Exception {
+	public Object updateUserUsage(@PathVariable("userId") String userId, @PathVariable("binId") String binId,
+			@PathVariable Double usage) throws Exception {
 		Object result = binService.updateUserUsage(userId, binId, usage);
 		return result;
+	}
+
+	// after filled bin should be clear/rest bin capcity
+	@GetMapping("/clear-bin/{binId}")
+	public Object clearBinCapacity(@PathVariable("binId") String binId) {
+		return binService.clearBin(binId);
 	}
 
 }

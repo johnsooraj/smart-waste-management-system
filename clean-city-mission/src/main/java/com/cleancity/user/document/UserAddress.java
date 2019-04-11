@@ -1,6 +1,6 @@
 package com.cleancity.user.document;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -18,8 +18,8 @@ public class UserAddress {
 	private Long pincode;
 	private String geolocation;
 
-	private Timestamp timestamp;
-	private Timestamp createDate;
+	private Date timestamp;
+	private Date createDate;
 
 	private byte flag;
 
@@ -75,19 +75,19 @@ public class UserAddress {
 		this.geolocation = geolocation;
 	}
 
-	public Timestamp getTimestamp() {
+	public Date getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Timestamp timestamp) {
+	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
 
-	public Timestamp getCreateDate() {
+	public Date getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(Timestamp createDate) {
+	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
 

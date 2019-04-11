@@ -8,9 +8,9 @@ public interface UserService {
 
 	public List<UserDetails> findAll();
 
-	public void addDummyData();
-
 	public UserDetails saveNewUserUser(UserDetails details);
 
 	public UserDetails fetchUserDetails(String id);
+
+	public boolean updateUserCredit(String userId, Double rate);
 }
