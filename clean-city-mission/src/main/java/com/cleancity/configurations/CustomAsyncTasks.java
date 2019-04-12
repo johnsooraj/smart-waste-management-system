@@ -1,5 +1,7 @@
 package com.cleancity.configurations;
 
+import java.util.List;
+
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +12,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import com.cleancity.wastebin.document.WasteBin;
 import com.cleancity.wastebin.repository.WasteBinRepository;
+import com.cleancity.wastebin.repository.WasteBinRepositoryDao;
 
 @EnableAsync
 @Configuration
@@ -23,6 +26,9 @@ public class CustomAsyncTasks {
 
 	@Autowired
 	WasteBinRepository binRepo;
+
+	@Autowired
+	WasteBinRepositoryDao binRepo2;
 
 	/**
 	 * <p>
@@ -45,17 +51,15 @@ public class CustomAsyncTasks {
 	 */
 
 	@Async
-	@Scheduled(cron = "*/10 * * * * *")
+	@Scheduled(cron = "*/20 * * * * *")
 	public void checkBinStatusForTenSecondsIntervel() {
 		logger.info("scheduled task running");
-		WasteBin bin = binRepo.findAll().get(0);
+		List<WasteBin> dd = binRepo2.findBinByLargestQuantity();
 		tapNotification.buildNotificationBody(
 				"f7e7oZfxl9s:APA91bFT_W9GrwEpHGyFPSyh3Ny8g8VhdIAGIOYaslzFKhtyWNLwXBkAuxhri6ao2s5iAauUScUttmY5FAX1FrMoSMUH2yCvTOE_hAU7FwCHhe69TlmqVsfdBmnLMEQriWAKGgWDsbRJ",
-				binRepo.findAll());
-		tapNotification.buildNotificationBody(
-				"f7e7oZfxl9s:APA91bFT_W9GrwEpHGyFPSyh3Ny8g8VhdIAGIOYaslzFKhtyWNLwXBkAuxhri6ao2s5iAauUScUttmY5FAX1FrMoSMUH2yCvTOE_hAU7FwCHhe69TlmqVsfdBmnLMEQriWAKGgWDsbRJ",
-				bin);
+				dd);
 		if (tapNotification.sendNotification()) {
 		}
+
 	}
 }

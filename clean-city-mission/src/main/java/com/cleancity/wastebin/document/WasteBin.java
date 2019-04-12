@@ -159,8 +159,9 @@ public class WasteBin {
 
 	@Override
 	public String toString() {
-		return "UserAddress [id=" + id + ", addressLine1=" + addressLine1 + ", addressLine2=" + addressLine2
-				+ ", addressLine3=" + addressLine3 + ", pincode=" + pincode + ", geolocation=" + geolocation
-				+ ", timestamp=" + timestamp + ", createDate=" + createDate + ", flag=" + flag + "]";
+		return "WasteBin [id=" + id + ", binCurrentCapacity=" + binCurrentCapacity + ", addressLine1=" + addressLine1
+				+ ", pincode=" + pincode + ", geolocation=" + geolocation + ", timestamp=" + timestamp + ", createDate="
+				+ createDate + ", flag=" + flag + "]";
 	}
+
 }

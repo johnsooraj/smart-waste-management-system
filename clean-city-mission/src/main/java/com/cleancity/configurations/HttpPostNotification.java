@@ -71,7 +71,7 @@ public class HttpPostNotification {
 
 		this.body.put("to", token);
 		this.notification.put("title", "Clean City Alert");
-		this.notification.put("body", bin.stream().map(obj -> obj.getPincode()));
+		this.notification.put("body", bin);
 		this.notification.put("icon", "https://static.thenounproject.com/png/36770-200.png");
 		this.notification.put("click_action", true);
 		this.notification.put("content_available", true);
