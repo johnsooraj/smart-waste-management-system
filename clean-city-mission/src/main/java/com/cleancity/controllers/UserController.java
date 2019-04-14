@@ -29,7 +29,7 @@ public class UserController {
 
 	@GetMapping("/{userId}")
 	public UserDetails fetchUserDetailsByUserId(@PathVariable String userId) {
-		return null;
+		return userService.fetchUserDetails(userId);
 	}
 
 	@PostMapping
@@ -44,7 +44,7 @@ public class UserController {
 
 	@DeleteMapping("/{userId}")
 	public boolean deleteUserDetails(@PathVariable String userId) {
-		return true;
+		return false;
 	}
 
 	@GetMapping("/{userId}/{rate}")
