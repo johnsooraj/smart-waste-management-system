@@ -81,6 +81,10 @@ public class WasteBinServiceImpl implements WasteBinService {
 
 		if (user.isPresent() && wasteBin.isPresent()) {
 
+			if (wasteBin.get().getBinCurrentCapacity() >= 100) {
+				throw new Exception("bin capacity exceeds!");
+			}
+
 			WasteBin binData = wasteBin.get();
 			UserDetails userData = user.get();
 
@@ -128,6 +132,12 @@ public class WasteBinServiceImpl implements WasteBinService {
 	@Override
 	public List<BinTracker> fetchBinTackerByBinId(String id) {
 		return binRepo2.fetchBinTackerByBinId(id);
+	}
+
+	@Override
+	public List<WasteBin> largestTenBinsByQuantity() {
+		List<WasteBin> listBins = binRepo.findTenByOrderByBinCurrentCapacityDesc();
+		return listBins;
 	}
 
 }

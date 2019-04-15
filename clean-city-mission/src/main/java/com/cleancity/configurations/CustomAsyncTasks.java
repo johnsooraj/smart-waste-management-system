@@ -1,6 +1,14 @@
 package com.cleancity.configurations;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +18,11 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import com.cleancity.wastebin.document.BinTracker;
 import com.cleancity.wastebin.document.WasteBin;
 import com.cleancity.wastebin.repository.WasteBinRepository;
 import com.cleancity.wastebin.repository.WasteBinRepositoryDao;
+import com.cleancity.wastebin.service.WasteBinService;
 
 @EnableAsync
 @Configuration
@@ -29,6 +39,9 @@ public class CustomAsyncTasks {
 
 	@Autowired
 	WasteBinRepositoryDao binRepo2;
+
+	@Autowired
+	WasteBinService binService;
 
 	/**
 	 * <p>
@@ -53,13 +66,69 @@ public class CustomAsyncTasks {
 	@Async
 	@Scheduled(cron = "*/20 * * * * *")
 	public void checkBinStatusForTenSecondsIntervel() {
-		logger.info("scheduled task running");
-		List<WasteBin> dd = binRepo2.findBinByLargestQuantity();
-		tapNotification.buildNotificationBody(
-				"f7e7oZfxl9s:APA91bFT_W9GrwEpHGyFPSyh3Ny8g8VhdIAGIOYaslzFKhtyWNLwXBkAuxhri6ao2s5iAauUScUttmY5FAX1FrMoSMUH2yCvTOE_hAU7FwCHhe69TlmqVsfdBmnLMEQriWAKGgWDsbRJ",
-				dd);
-		if (tapNotification.sendNotification()) {
+
+		logger.info("---------------Fuzzy Logic Start---------------");
+
+		// fetch largest 10 bins
+		List<WasteBin> largeTenBins = binService.largestTenBinsByQuantity();
+		List<WasteBin> finalOrderOfBins = new ArrayList<WasteBin>();
+		Map<String, Double> fuzzyResultSet = new HashMap<String, Double>();
+		for (WasteBin wasteBin : largeTenBins) {
+			// only check for fuzzy logic if any of the bin is grater than 80%
+			if (wasteBin.getBinCurrentCapacity() > 80) {
+				logger.info("fuzzy input data count = " + largeTenBins.size());
+
+				logger.info("-> collecting information for fuzzy input id = " + wasteBin.getId());
+				// fetch record of bin usage
+				List<BinTracker> trackers = binRepo2.fetchTrackForLastTwoDays(wasteBin.getId());
+				logger.info("--> fuzzy information count = " + trackers.size());
+				if (!trackers.isEmpty()) {
+					// calculate average of total deposit by count
+					double sum = trackers.stream().mapToDouble(BinTracker::getFilledQuantity).sum();
+					double avarge = sum / trackers.size();
+					fuzzyResultSet.put(wasteBin.getId(), avarge);
+				}
+
+				// sort data
+				Map<String, Double> newMap = sortByComparator(fuzzyResultSet, false);
+				newMap.forEach((key, value) -> {
+					finalOrderOfBins.add(binRepo.findById(key).get());
+				});
+
+				tapNotification.buildNotificationBody(
+						"f7e7oZfxl9s:APA91bFT_W9GrwEpHGyFPSyh3Ny8g8VhdIAGIOYaslzFKhtyWNLwXBkAuxhri6ao2s5iAauUScUttmY5FAX1FrMoSMUH2yCvTOE_hAU7FwCHhe69TlmqVsfdBmnLMEQriWAKGgWDsbRJ",
+						finalOrderOfBins);
+				if (tapNotification.sendNotification()) {
+				}
+			} else {
+
+			}
+		}
+		logger.info("---------------Fuzzy Logic End---------------");
+	}
+
+	private static Map<String, Double> sortByComparator(Map<String, Double> unsortMap, final boolean order) {
+
+		List<Entry<String, Double>> list = new LinkedList<Entry<String, Double>>(unsortMap.entrySet());
+
+		// Sorting the list based on values
+		Collections.sort(list, new Comparator<Entry<String, Double>>() {
+			public int compare(Entry<String, Double> o1, Entry<String, Double> o2) {
+				if (order) {
+					return o1.getValue().compareTo(o2.getValue());
+				} else {
+					return o2.getValue().compareTo(o1.getValue());
+
+				}
+			}
+		});
+
+		// Maintaining insertion order with the help of LinkedList
+		Map<String, Double> sortedMap = new LinkedHashMap<String, Double>();
+		for (Entry<String, Double> entry : list) {
+			sortedMap.put(entry.getKey(), entry.getValue());
 		}
 
+		return sortedMap;
 	}
 }

@@ -26,4 +26,6 @@ public interface WasteBinService {
 	public boolean clearBin(String binId);
 
 	public List<BinTracker> fetchBinTackerByBinId(String id);
+
+	public List<WasteBin> largestTenBinsByQuantity();
 }

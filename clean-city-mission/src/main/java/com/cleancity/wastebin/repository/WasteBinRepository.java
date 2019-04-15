@@ -12,6 +12,8 @@ import com.cleancity.wastebin.document.WasteBin;
 public interface WasteBinRepository extends MongoRepository<WasteBin, String> {
 
 	public List<WasteBin> findAllByOrderByCreateDateDesc();
+	
+	public List<WasteBin> findTenByOrderByBinCurrentCapacityDesc();
 
 	public WasteBin findByPincode(Long pin);
 
