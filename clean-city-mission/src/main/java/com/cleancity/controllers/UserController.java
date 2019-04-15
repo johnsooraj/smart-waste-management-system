@@ -47,9 +47,9 @@ public class UserController {
 		return false;
 	}
 
-	@GetMapping("/{userId}/{rate}")
-	public Object rechargeUserCredit(@PathVariable String userId, @PathVariable Double rate) {
-		return userService.updateUserCredit(userId, rate);
+	@GetMapping("/{userId}/{amount}")
+	public Object rechargeUserCredit(@PathVariable String userId, @PathVariable Double amount) {
+		return userService.updateUserCredit(userId, amount);
 	}
 
 }

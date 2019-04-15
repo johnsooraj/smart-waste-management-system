@@ -1,6 +1,9 @@
 package com.cleancity.user.document;
 
+import java.util.Date;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -10,8 +13,15 @@ public class UserDetails {
 	private String id;
 	private String name;
 	private Byte age;
+
+	@Indexed(unique = true)
 	private String phone;
+
 	private Double binCredit = 00.00;
+
+	private Date timestamp;
+	private Date createDate;
+	private byte flag;
 
 	private UserAddress userAddress;
 
@@ -73,6 +83,30 @@ public class UserDetails {
 
 	public void setBinCredit(Double binCredit) {
 		this.binCredit = binCredit;
+	}
+
+	public Date getTimestamp() {
+		return timestamp;
+	}
+
+	public void setTimestamp(Date timestamp) {
+		this.timestamp = timestamp;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public byte getFlag() {
+		return flag;
+	}
+
+	public void setFlag(byte flag) {
+		this.flag = flag;
 	}
 
 	@Override

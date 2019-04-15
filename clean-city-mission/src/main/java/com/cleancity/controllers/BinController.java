@@ -3,6 +3,7 @@ package com.cleancity.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,10 +27,20 @@ public class BinController {
 		return binService.fetchAllWasteBins();
 	}
 
+	@GetMapping("/{binId}")
+	public WasteBin fetchWasteBinById(@PathVariable String binId) {
+		return binService.findWasteBinById(binId);
+	}
+
 	// call from android app of authority
 	@PostMapping
 	public Object installNewBin(@RequestBody WasteBin bin) {
-		return null;
+		return binService.saveWasteBin(bin);
+	}
+
+	@DeleteMapping("/{binId}")
+	public WasteBin deleteWasteBinById(@PathVariable String binId) {
+		return binService.findWasteBinById(binId);
 	}
 
 	// update usage for IOT device
@@ -44,6 +55,11 @@ public class BinController {
 	@GetMapping("/clear-bin/{binId}")
 	public Object clearBinCapacity(@PathVariable("binId") String binId) {
 		return binService.clearBin(binId);
+	}
+
+	@GetMapping("/bintrack/{binId}")
+	public Object fetchBinTrackByBinId(@PathVariable String binId) {
+		return binService.fetchBinTackerByBinId(binId);
 	}
 
 }

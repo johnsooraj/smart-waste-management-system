@@ -3,6 +3,7 @@ package com.cleancity.wastebin.document;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
@@ -18,6 +19,7 @@ public class WasteBin {
 	private String addressLine3;
 
 	// unique identification
+	@Indexed(unique = true)
 	private Long pincode;
 	private String geolocation;
 

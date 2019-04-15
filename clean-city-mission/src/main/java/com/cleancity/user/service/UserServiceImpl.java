@@ -1,5 +1,6 @@
 package com.cleancity.user.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,13 +18,19 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserDetails> findAll() {
-		return userDetailRepo.findAll();
+		return userDetailRepo.findAllByOrderByCreateDateDesc();
 	}
 
 	@Override
 	public UserDetails saveNewUserUser(UserDetails details) {
-		UserDetails user = userDetailRepo.save(details);
-		return user;
+		UserDetails user = userDetailRepo.findByPhone(details.getPhone());
+		if (user == null) {
+			details.setCreateDate(new Date());
+			details.setTimestamp(new Date());
+			return userDetailRepo.save(details);
+		} else {
+			return user;
+		}
 	}
 
 	@Override

@@ -15,6 +15,7 @@ import com.cleancity.wastebin.document.BinTracker;
 import com.cleancity.wastebin.document.WasteBin;
 import com.cleancity.wastebin.repository.BinTrackerRepository;
 import com.cleancity.wastebin.repository.WasteBinRepository;
+import com.cleancity.wastebin.repository.WasteBinRepositoryDao;
 
 @Service
 public class WasteBinServiceImpl implements WasteBinService {
@@ -30,6 +31,9 @@ public class WasteBinServiceImpl implements WasteBinService {
 	@Autowired
 	BinTrackerRepository binTrackRepo;
 
+	@Autowired
+	WasteBinRepositoryDao binRepo2;
+
 	@Override
 	public WasteBin findByPincode(Long code) {
 		return binRepo.findByPincode(code);
@@ -37,7 +41,7 @@ public class WasteBinServiceImpl implements WasteBinService {
 
 	@Override
 	public List<WasteBin> fetchAllWasteBins() {
-		return binRepo.findAll();
+		return binRepo.findAllByOrderByCreateDateDesc();
 	}
 
 	@Override
@@ -47,7 +51,13 @@ public class WasteBinServiceImpl implements WasteBinService {
 
 	@Override
 	public WasteBin saveWasteBin(WasteBin bin) {
-		return binRepo.save(bin);
+		WasteBin bin2 = binRepo.findByPincode(bin.getPincode());
+		if (bin2 == null) {
+			bin.setCreateDate(new Date());
+			bin.setTimestamp(new Date());
+			return binRepo.save(bin);
+		} else
+			return bin2;
 	}
 
 	@Override
@@ -56,6 +66,11 @@ public class WasteBinServiceImpl implements WasteBinService {
 		return bin.isPresent() ? bin.get() : null;
 	}
 
+	/**
+	 *
+	 * The IOT send current volume of the waste bin, in percentage
+	 * 
+	 */
 	@Override
 	public Object updateUserUsage(String userId, String binId, Double usage) throws Exception {
 
@@ -81,22 +96,38 @@ public class WasteBinServiceImpl implements WasteBinService {
 			binRepo.save(binData);
 			userRepo.save(userData);
 
-			this.addBinTracker(binId, userId, userUsage);
+			return this.addBinTracker(binId, userId, userUsage);
 
 		} else {
 			throw new Exception("invalid bin or user");
 		}
-		return null;
 	}
 
-	private void addBinTracker(String binId, String userId, Double usage) {
-		binTrackRepo.save(new BinTracker(binId, userId, usage));
+	private BinTracker addBinTracker(String binId, String userId, Double usage) {
+		BinTracker obj = binTrackRepo.save(new BinTracker(binId, userId, usage));
 		logger.info("bin-tracker updated");
+		return obj;
 	};
 
 	@Override
 	public boolean clearBin(String binId) {
 		return binRepo.updateBinCurrentCapacity(binId);
+	}
+
+	@Override
+	public WasteBin findWasteBinById(String id) {
+		return binRepo.findById(id).get();
+	}
+
+	@Override
+	public boolean deleteWasteBinById(String id) {
+		binRepo.deleteById(id);
+		return true;
+	}
+
+	@Override
+	public List<BinTracker> fetchBinTackerByBinId(String id) {
+		return binRepo2.fetchBinTackerByBinId(id);
 	}
 
 }
