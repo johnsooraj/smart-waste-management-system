@@ -12,6 +12,9 @@ export class CleanCityHomeComponent implements OnInit {
   binList = Array<any>();
   binForModal: any;
 
+  lat: number = 10.016237;
+  lng: number = 76.676647;
+
   constructor(
     private modalService: NgbModal,
     private commonService: CommonService
@@ -25,6 +28,19 @@ export class CleanCityHomeComponent implements OnInit {
 
   openGraphModal(content: any, binData: any) {
     this.binForModal = binData;
+    this.modalService.open(
+      content,
+      {
+        ariaLabelledBy: 'modal-basic-title',
+        size: 'lg'
+      }).result.then((result) => {
+
+      }, (reason) => {
+
+      });
+  }
+
+  openAddBinModal(content: any) {
     this.modalService.open(
       content,
       {

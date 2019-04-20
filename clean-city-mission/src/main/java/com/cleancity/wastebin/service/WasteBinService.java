@@ -2,6 +2,8 @@ package com.cleancity.wastebin.service;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.cleancity.wastebin.document.BinTracker;
 import com.cleancity.wastebin.document.WasteBin;
 
@@ -17,7 +19,7 @@ public interface WasteBinService {
 
 	public WasteBin findByPincode(Long code);
 
-	public WasteBin saveWasteBin(WasteBin bin);
+	public ResponseEntity<WasteBin> saveWasteBin(WasteBin bin);
 
 	public WasteBin getWasteBinById(String id);
 

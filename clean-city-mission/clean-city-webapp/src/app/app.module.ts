@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AgmCoreModule } from '@agm/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,7 @@ import { CommonService } from './common.service';
 import { CityGraphComponent } from './city-graph/city-graph.component';
 import { DatePipe } from '@angular/common';
 import { UsersComponent } from './users/users.component';
+import { GoogleMapsComponent } from './google-maps/google-maps.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { UsersComponent } from './users/users.component';
     LoginComponent,
     CleanCityHomeComponent,
     CityGraphComponent,
-    UsersComponent
+    UsersComponent,
+    GoogleMapsComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,10 @@ import { UsersComponent } from './users/users.component';
     NgbModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCr8qgQC_waV6aPSgqM52YQ-1wdExSFeLY'
+    })
   ],
   providers: [
     CommonService,

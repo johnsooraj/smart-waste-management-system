@@ -12,4 +12,6 @@ public interface WasteBinRepositoryDao {
 	public List<BinTracker> fetchBinTackerByBinId(String id);
 
 	public List<BinTracker> fetchTrackForLastTwoDays(String id);
+
+	public boolean updateBinCapacityToZero(String binId);
 }

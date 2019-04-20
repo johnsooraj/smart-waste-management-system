@@ -56,7 +56,8 @@ public class HttpPostNotification {
 		binData.put("id", bin.getId());
 		binData.put("binCurrentCapacity", bin.getBinCurrentCapacity());
 		binData.put("pincode", bin.getPincode());
-		binData.put("geolocation", bin.getGeolocation());
+		binData.put("latitude", bin.getLatitude());
+		binData.put("longitude", bin.getLongitude());
 		binData.put("lastFilled", bin.getTimestamp());
 
 		this.body.put("to", token);

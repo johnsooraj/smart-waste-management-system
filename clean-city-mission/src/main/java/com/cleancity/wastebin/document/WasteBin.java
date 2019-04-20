@@ -21,7 +21,8 @@ public class WasteBin {
 	// unique identification
 	@Indexed(unique = true)
 	private Long pincode;
-	private String geolocation;
+	private Double latitude;
+	private Double longitude;
 
 	private Date timestamp;
 	private Date createDate;
@@ -38,20 +39,16 @@ public class WasteBin {
 		this.pincode = pincode;
 	}
 
-	public WasteBin(String addressLine3, Long pincode, String geolocation) {
+	public WasteBin(Double binCurrentCapacity, String addressLine1, String addressLine2, String addressLine3,
+			Long pincode, Double latitude, Double longitude) {
 		super();
-		this.addressLine3 = addressLine3;
-		this.pincode = pincode;
-		this.geolocation = geolocation;
-	}
-
-	public WasteBin(String addressLine1, String addressLine2, String addressLine3, Long pincode, String geolocation) {
-		super();
+		this.binCurrentCapacity = binCurrentCapacity;
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
 		this.addressLine3 = addressLine3;
 		this.pincode = pincode;
-		this.geolocation = geolocation;
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
 
 	public String getId() {
@@ -60,6 +57,14 @@ public class WasteBin {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public Double getBinCurrentCapacity() {
+		return binCurrentCapacity;
+	}
+
+	public void setBinCurrentCapacity(Double binCurrentCapacity) {
+		this.binCurrentCapacity = binCurrentCapacity;
 	}
 
 	public String getAddressLine1() {
@@ -94,12 +99,20 @@ public class WasteBin {
 		this.pincode = pincode;
 	}
 
-	public String getGeolocation() {
-		return geolocation;
+	public Double getLatitude() {
+		return latitude;
 	}
 
-	public void setGeolocation(String geolocation) {
-		this.geolocation = geolocation;
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 
 	public Date getTimestamp() {
@@ -124,14 +137,6 @@ public class WasteBin {
 
 	public void setFlag(byte flag) {
 		this.flag = flag;
-	}
-
-	public Double getBinCurrentCapacity() {
-		return binCurrentCapacity;
-	}
-
-	public void setBinCurrentCapacity(Double binCurrentCapacity) {
-		this.binCurrentCapacity = binCurrentCapacity;
 	}
 
 	@Override
@@ -162,7 +167,8 @@ public class WasteBin {
 	@Override
 	public String toString() {
 		return "WasteBin [id=" + id + ", binCurrentCapacity=" + binCurrentCapacity + ", addressLine1=" + addressLine1
-				+ ", pincode=" + pincode + ", geolocation=" + geolocation + ", timestamp=" + timestamp + ", createDate="
+				+ ", addressLine2=" + addressLine2 + ", addressLine3=" + addressLine3 + ", pincode=" + pincode
+				+ ", latitude=" + latitude + ", longitude=" + longitude + ", timestamp=" + timestamp + ", createDate="
 				+ createDate + ", flag=" + flag + "]";
 	}
 

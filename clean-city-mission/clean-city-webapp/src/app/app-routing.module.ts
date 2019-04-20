@@ -4,12 +4,17 @@ import { LoginComponent } from './login/login.component';
 import { CleanCityHomeComponent } from './clean-city-home/clean-city-home.component';
 import { CityGuard } from './city.guard';
 import { UsersComponent } from './users/users.component';
+import { GoogleMapsComponent } from './google-maps/google-maps.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/maps',
     pathMatch: 'full'
+  },
+  {
+    path: 'maps',
+    component: GoogleMapsComponent
   },
   {
     path: 'login',

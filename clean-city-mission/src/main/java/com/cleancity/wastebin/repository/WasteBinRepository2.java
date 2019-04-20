@@ -42,4 +42,14 @@ public class WasteBinRepository2 implements WasteBinRepositoryDao {
 		query.addCriteria(Criteria.where("binId").is(id).and("dateTime").gte(twoDayAgo).lt(new Date()));
 		return mongoTemplate.find(query, BinTracker.class);
 	}
+
+	@Override
+	public boolean updateBinCapacityToZero(String binId) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("id").is(binId));
+		WasteBin wasteBin = mongoTemplate.findOne(query, WasteBin.class);
+		wasteBin.setBinCurrentCapacity(0d);
+		mongoTemplate.save(wasteBin);
+		return wasteBin.getId() != null ? true : false;
+	}
 }

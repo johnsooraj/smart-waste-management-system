@@ -23,7 +23,7 @@ public interface WasteBinRepository extends MongoRepository<WasteBin, String> {
 
 	public List<WasteBin> findByAddressLine3(String add3);
 
-	@Query("UPDATE WasteBin wb SET wb.binCurrentCapacity = 0.0 WHERE wb.id = ?1")
+	@Query("UPDATE WasteBin wb SET wb.binCurrentCapacity = 0 WHERE wb.id = ?1")
 	public boolean updateBinCurrentCapacity(String id);
 
 }

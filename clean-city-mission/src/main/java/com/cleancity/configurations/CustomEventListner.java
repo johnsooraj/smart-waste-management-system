@@ -28,11 +28,11 @@ public class CustomEventListner {
 	@EventListener
 	public void handleContextRefreshEvent(ApplicationReadyEvent ctxStartEvt) {
 		System.out.println("Context Start Event received.");
-		binLocations.add(new WasteBin("Vyttila", 123456l, "9.968919, 76.317752"));
-		binLocations.add(new WasteBin("Kadavanthra", 123412l, "9.967274, 76.300080"));
-		binLocations.add(new WasteBin("Pallimukku", 133456l, "9.964653, 76.288511"));
-		binLocations.add(new WasteBin("Kacheripady", 144456l, "9.985595, 76.281471"));
-		binLocations.add(new WasteBin("Kaloor", 67456l, "9.994821, 76.292121"));
+		binLocations.add(new WasteBin(0.0, null, null, "Vyttila", 682019l, 9.968919, 76.317752));
+		binLocations.add(new WasteBin(0.0, null, null, "Kadavanthra", 682020l, 9.967274, 76.300080));
+		binLocations.add(new WasteBin(0.0, null, null, "Pallimukku", 682016l, 9.964653, 76.288511));
+		binLocations.add(new WasteBin(0.0, null, null, "Kacheripady", 682018l, 9.985595, 76.281471));
+		binLocations.add(new WasteBin(0.0, null, null, "Kaloor", 682017l, 9.994821, 76.292121));
 		this.addFixedBinLocations();
 		this.addDummyUser();
 	}

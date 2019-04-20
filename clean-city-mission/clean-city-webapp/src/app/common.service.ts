@@ -10,6 +10,8 @@ export class CommonService {
 
   userLoginData: any;
 
+  apiKey: string = 'AIzaSyCr8qgQC_waV6aPSgqM52YQ-1wdExSFeLY';
+
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -48,6 +50,10 @@ export class CommonService {
 
   getBinTrackByBinId(binId: string): Observable<any> {
     return this.http.get('/api/bin/bintrack/' + binId);
+  }
+
+  getGoogleMap() {
+    return this.http.get(`https://maps.googleapis.com/maps/api/js?key=${this.apiKey}&callback=initMap`);
   }
 
 

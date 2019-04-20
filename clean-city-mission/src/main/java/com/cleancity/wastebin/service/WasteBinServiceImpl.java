@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.cleancity.configurations.FirebaseAdminConfig;
@@ -50,14 +52,15 @@ public class WasteBinServiceImpl implements WasteBinService {
 	}
 
 	@Override
-	public WasteBin saveWasteBin(WasteBin bin) {
+	public ResponseEntity<WasteBin> saveWasteBin(WasteBin bin) {
 		WasteBin bin2 = binRepo.findByPincode(bin.getPincode());
 		if (bin2 == null) {
 			bin.setCreateDate(new Date());
 			bin.setTimestamp(new Date());
-			return binRepo.save(bin);
-		} else
-			return bin2;
+			return new ResponseEntity<WasteBin>(binRepo.save(bin), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<WasteBin>(HttpStatus.NOT_MODIFIED);
+		}
 	}
 
 	@Override
@@ -115,7 +118,7 @@ public class WasteBinServiceImpl implements WasteBinService {
 
 	@Override
 	public boolean clearBin(String binId) {
-		return binRepo.updateBinCurrentCapacity(binId);
+		return binRepo2.updateBinCapacityToZero(binId);
 	}
 
 	@Override

@@ -1,0 +1,6 @@
+<agm-map #myGoogleMapEle [latitude]="lat" (click)="leftButtonClick($event)" (contextmenu)="rightButtonClick($event)"
+  [longitude]="lng" [fitBounds]="true">
+  <agm-marker [latitude]="10.041661" [longitude]="76.681717" [agmFitBounds]="true"></agm-marker>
+  <agm-marker [latitude]="10.011661" [longitude]="76.681617" [agmFitBounds]="true"></agm-marker>
+  <agm-marker [latitude]="10.002391" [longitude]="76.685006" [agmFitBounds]="true"></agm-marker>
+</agm-map>
