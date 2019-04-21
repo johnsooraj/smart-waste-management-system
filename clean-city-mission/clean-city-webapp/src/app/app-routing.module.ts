@@ -6,6 +6,7 @@ import { CityGuard } from './city.guard';
 import { UsersComponent } from './users/users.component';
 import { GoogleMapsComponent } from './google-maps/google-maps.component';
 import { CreateBinComponent } from './create-bin/create-bin.component';
+import { MapRoutesComponent } from './map-routes/map-routes.component';
 
 const routes: Routes = [
   {
