@@ -39,8 +39,9 @@ public class BinController {
 	}
 
 	@DeleteMapping("/{binId}")
-	public WasteBin deleteWasteBinById(@PathVariable String binId) {
-		return binService.findWasteBinById(binId);
+	public Object deleteWasteBinById(@PathVariable String binId) {
+		binService.deleteWasteBinById(binId);
+		return true;
 	}
 
 	// update usage for IOT device

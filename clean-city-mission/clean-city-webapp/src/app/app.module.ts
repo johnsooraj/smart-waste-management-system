@@ -15,6 +15,7 @@ import { CityGraphComponent } from './city-graph/city-graph.component';
 import { DatePipe } from '@angular/common';
 import { UsersComponent } from './users/users.component';
 import { GoogleMapsComponent } from './google-maps/google-maps.component';
+import { CreateBinComponent } from './create-bin/create-bin.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { GoogleMapsComponent } from './google-maps/google-maps.component';
     CleanCityHomeComponent,
     CityGraphComponent,
     UsersComponent,
-    GoogleMapsComponent
+    GoogleMapsComponent,
+    CreateBinComponent
   ],
   imports: [
     BrowserModule,

@@ -58,6 +58,8 @@ public class WasteBinServiceImpl implements WasteBinService {
 			bin.setCreateDate(new Date());
 			bin.setTimestamp(new Date());
 			return new ResponseEntity<WasteBin>(binRepo.save(bin), HttpStatus.OK);
+		} else if (bin.getId() != null && bin.getId().length() > 0) {
+			return new ResponseEntity<WasteBin>(binRepo.save(bin), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<WasteBin>(HttpStatus.NOT_MODIFIED);
 		}

@@ -1,0 +1,27 @@
+<form [formGroup]="formGroup" (ngSubmit)="addBinFormSubmit()" novalidate id="contact">
+  <fieldset>
+    <input formControlName="binCurrentCapacity" placeholder="Bincapcity" type="number" tabindex="1" required autofocus>
+  </fieldset>
+  <fieldset>
+    <input formControlName="addressLine1" placeholder="Address Line 1" type="text" tabindex="1" required autofocus>
+  </fieldset>
+  <fieldset>
+    <input formControlName="addressLine2" placeholder="Address Line 2" type="text" tabindex="1" required autofocus>
+  </fieldset>
+  <fieldset>
+    <input formControlName="addressLine3" placeholder="Address Line 3" type="text" tabindex="1" required autofocus>
+  </fieldset>
+  <fieldset>
+    <input formControlName="pincode" placeholder="Pin code" type="number" tabindex="1" required autofocus>
+  </fieldset>
+  <fieldset>
+    <input formControlName="latitude" placeholder="Latitude" type="text" tabindex="1" required autofocus>
+  </fieldset>
+  <fieldset>
+    <input formControlName="longitude" placeholder="longitude" type="text" tabindex="1" required autofocus>
+  </fieldset>
+  <fieldset>
+    <input formControlName="flag" placeholder="Status" type="number" tabindex="1" required autofocus>
+  </fieldset>
+  <button type="submit">Save</button>
+</form>

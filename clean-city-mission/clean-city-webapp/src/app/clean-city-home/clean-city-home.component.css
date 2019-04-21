@@ -1,8 +1,8 @@
 .home-wrapper{
     width: 100%;
     height: calc(100vh - 60px);
-    border: 1px solid #333;
     margin: auto;
+    overflow-y: scroll;
 }
 
 body {

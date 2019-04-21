@@ -327,6 +327,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _clean_city_home_clean_city_home_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./clean-city-home/clean-city-home.component */ "./src/app/clean-city-home/clean-city-home.component.ts");
 /* harmony import */ var _city_guard__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./city.guard */ "./src/app/city.guard.ts");
 /* harmony import */ var _users_users_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./users/users.component */ "./src/app/users/users.component.ts");
+/* harmony import */ var _google_maps_google_maps_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./google-maps/google-maps.component */ "./src/app/google-maps/google-maps.component.ts");
+/* harmony import */ var _create_bin_create_bin_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./create-bin/create-bin.component */ "./src/app/create-bin/create-bin.component.ts");
+
+
 
 
 
@@ -337,8 +341,17 @@ __webpack_require__.r(__webpack_exports__);
 var routes = [
     {
         path: '',
-        redirectTo: '/login',
+        redirectTo: '/maps',
         pathMatch: 'full'
+    },
+    {
+        path: 'compose',
+        component: _create_bin_create_bin_component__WEBPACK_IMPORTED_MODULE_8__["CreateBinComponent"],
+        outlet: 'popup'
+    },
+    {
+        path: 'maps',
+        component: _google_maps_google_maps_component__WEBPACK_IMPORTED_MODULE_7__["GoogleMapsComponent"]
     },
     {
         path: 'login',
@@ -389,7 +402,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\r\n    <router-outlet></router-outlet>\r\n</div>"
+module.exports = "<div class=\"container-fluid\">\r\n    <nav class=\"navbar navbar-expand-sm bg-dark navbar-dark\">\r\n        <ul class=\"navbar-nav\">\r\n            <li class=\"nav-item\">\r\n                <a class=\"nav-link\" routerLink=\"/home\" routerLinkActive=\"active\">Waste Bins</a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n                <a class=\"nav-link\" routerLink=\"/maps\" routerLinkActive=\"active\">Bins In Map</a>\r\n            </li>\r\n            <li class=\"nav-item\">\r\n                <a class=\"nav-link\" routerLink=\"/users\" routerLinkActive=\"active\">Users</a>\r\n            </li>\r\n        </ul>\r\n    </nav>\r\n    <router-outlet></router-outlet>\r\n    <router-outlet name=\"popup\"></router-outlet>\r\n</div>"
 
 /***/ }),
 
@@ -442,14 +455,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
-/* harmony import */ var _clean_city_home_clean_city_home_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./clean-city-home/clean-city-home.component */ "./src/app/clean-city-home/clean-city-home.component.ts");
-/* harmony import */ var _common_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./common.service */ "./src/app/common.service.ts");
-/* harmony import */ var _city_graph_city_graph_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./city-graph/city-graph.component */ "./src/app/city-graph/city-graph.component.ts");
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
-/* harmony import */ var _users_users_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./users/users.component */ "./src/app/users/users.component.ts");
+/* harmony import */ var _agm_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @agm/core */ "./node_modules/@agm/core/index.js");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./login/login.component */ "./src/app/login/login.component.ts");
+/* harmony import */ var _clean_city_home_clean_city_home_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./clean-city-home/clean-city-home.component */ "./src/app/clean-city-home/clean-city-home.component.ts");
+/* harmony import */ var _common_service__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./common.service */ "./src/app/common.service.ts");
+/* harmony import */ var _city_graph_city_graph_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./city-graph/city-graph.component */ "./src/app/city-graph/city-graph.component.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _users_users_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./users/users.component */ "./src/app/users/users.component.ts");
+/* harmony import */ var _google_maps_google_maps_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./google-maps/google-maps.component */ "./src/app/google-maps/google-maps.component.ts");
+/* harmony import */ var _create_bin_create_bin_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./create-bin/create-bin.component */ "./src/app/create-bin/create-bin.component.ts");
+
+
+
 
 
 
@@ -471,26 +490,31 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"],
-                _login_login_component__WEBPACK_IMPORTED_MODULE_9__["LoginComponent"],
-                _clean_city_home_clean_city_home_component__WEBPACK_IMPORTED_MODULE_10__["CleanCityHomeComponent"],
-                _city_graph_city_graph_component__WEBPACK_IMPORTED_MODULE_12__["CityGraphComponent"],
-                _users_users_component__WEBPACK_IMPORTED_MODULE_14__["UsersComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"],
+                _login_login_component__WEBPACK_IMPORTED_MODULE_10__["LoginComponent"],
+                _clean_city_home_clean_city_home_component__WEBPACK_IMPORTED_MODULE_11__["CleanCityHomeComponent"],
+                _city_graph_city_graph_component__WEBPACK_IMPORTED_MODULE_13__["CityGraphComponent"],
+                _users_users_component__WEBPACK_IMPORTED_MODULE_15__["UsersComponent"],
+                _google_maps_google_maps_component__WEBPACK_IMPORTED_MODULE_16__["GoogleMapsComponent"],
+                _create_bin_create_bin_component__WEBPACK_IMPORTED_MODULE_17__["CreateBinComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_7__["AppRoutingModule"],
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClientModule"],
                 _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_6__["NgbModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_2__["BrowserAnimationsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormsModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"]
+                _angular_forms__WEBPACK_IMPORTED_MODULE_4__["ReactiveFormsModule"],
+                _agm_core__WEBPACK_IMPORTED_MODULE_7__["AgmCoreModule"].forRoot({
+                    apiKey: 'AIzaSyCr8qgQC_waV6aPSgqM52YQ-1wdExSFeLY'
+                })
             ],
             providers: [
-                _common_service__WEBPACK_IMPORTED_MODULE_11__["CommonService"],
-                _angular_common__WEBPACK_IMPORTED_MODULE_13__["DatePipe"]
+                _common_service__WEBPACK_IMPORTED_MODULE_12__["CommonService"],
+                _angular_common__WEBPACK_IMPORTED_MODULE_14__["DatePipe"]
             ],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -679,7 +703,7 @@ var CityGuard = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".home-wrapper{\r\n    width: 100%;\r\n    height: calc(100vh - 60px);\r\n    border: 1px solid #333;\r\n    margin: auto;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2xlYW4tY2l0eS1ob21lL2NsZWFuLWNpdHktaG9tZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksV0FBVztJQUNYLDBCQUEwQjtJQUMxQixzQkFBc0I7SUFDdEIsWUFBWTtBQUNoQiIsImZpbGUiOiJzcmMvYXBwL2NsZWFuLWNpdHktaG9tZS9jbGVhbi1jaXR5LWhvbWUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5ob21lLXdyYXBwZXJ7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIGhlaWdodDogY2FsYygxMDB2aCAtIDYwcHgpO1xyXG4gICAgYm9yZGVyOiAxcHggc29saWQgIzMzMztcclxuICAgIG1hcmdpbjogYXV0bztcclxufSJdfQ== */"
+module.exports = ".home-wrapper{\r\n    width: 100%;\r\n    height: calc(100vh - 60px);\r\n    margin: auto;\r\n    overflow-y: scroll;\r\n}\r\n\r\nbody {\r\n  font-family: \"Roboto\", Helvetica, Arial, sans-serif;\r\n  font-weight: 100;\r\n  font-size: 12px;\r\n  line-height: 30px;\r\n  color: #777;\r\n  background: #4CAF50;\r\n}\r\n\r\n.container {\r\n  max-width: 400px;\r\n  width: 100%;\r\n  margin: 0 auto;\r\n  position: relative;\r\n}\r\n\r\n#contact input[type=\"text\"],\r\n#contact input[type=\"email\"],\r\n#contact input[type=\"tel\"],\r\n#contact input[type=\"url\"],\r\n#contact textarea,\r\n#contact button[type=\"submit\"] {\r\n  font: 400 12px/16px \"Roboto\", Helvetica, Arial, sans-serif;\r\n}\r\n\r\n#contact {\r\n  background: #F9F9F9;\r\n  padding: 25px;\r\n  margin: 0;\r\n  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);\r\n}\r\n\r\n#contact h3 {\r\n  display: block;\r\n  font-size: 30px;\r\n  font-weight: 300;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n#contact h4 {\r\n  margin: 5px 0 15px;\r\n  display: block;\r\n  font-size: 13px;\r\n  font-weight: 400;\r\n}\r\n\r\nfieldset {\r\n  border: medium none !important;\r\n  margin: 0 0 10px;\r\n  min-width: 100%;\r\n  padding: 0;\r\n  width: 100%;\r\n}\r\n\r\n#contact input[type=\"text\"],\r\n#contact input[type=\"email\"],\r\n#contact input[type=\"tel\"],\r\n#contact input[type=\"url\"],\r\n#contact textarea {\r\n  width: 100%;\r\n  border: 1px solid #ccc;\r\n  background: #FFF;\r\n  margin: 0 0 5px;\r\n  padding: 10px;\r\n}\r\n\r\n#contact input[type=\"text\"]:hover,\r\n#contact input[type=\"email\"]:hover,\r\n#contact input[type=\"tel\"]:hover,\r\n#contact input[type=\"url\"]:hover,\r\n#contact textarea:hover {\r\n  transition: border-color 0.3s ease-in-out;\r\n  border: 1px solid #aaa;\r\n}\r\n\r\n#contact textarea {\r\n  height: 100px;\r\n  max-width: 100%;\r\n  resize: none;\r\n}\r\n\r\n#contact button[type=\"submit\"] {\r\n  cursor: pointer;\r\n  width: 100%;\r\n  border: none;\r\n  background: #4CAF50;\r\n  color: #FFF;\r\n  margin: 0 0 5px;\r\n  padding: 10px;\r\n  font-size: 15px;\r\n}\r\n\r\n#contact button[type=\"submit\"]:hover {\r\n  background: #43A047;\r\n  transition: background-color 0.3s ease-in-out;\r\n}\r\n\r\n#contact button[type=\"submit\"]:active {\r\n  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);\r\n}\r\n\r\n.copyright {\r\n  text-align: center;\r\n}\r\n\r\n#contact input:focus,\r\n#contact textarea:focus {\r\n  outline: 0;\r\n  border: 1px solid #aaa;\r\n}\r\n\r\n::-webkit-input-placeholder {\r\n  color: #888;\r\n}\r\n\r\n:-moz-placeholder {\r\n  color: #888;\r\n}\r\n\r\n::-moz-placeholder {\r\n  color: #888;\r\n}\r\n\r\n:-ms-input-placeholder {\r\n  color: #888;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY2xlYW4tY2l0eS1ob21lL2NsZWFuLWNpdHktaG9tZS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksV0FBVztJQUNYLDBCQUEwQjtJQUMxQixZQUFZO0lBQ1osa0JBQWtCO0FBQ3RCOztBQUVBO0VBQ0UsbURBQW1EO0VBQ25ELGdCQUFnQjtFQUNoQixlQUFlO0VBQ2YsaUJBQWlCO0VBQ2pCLFdBQVc7RUFDWCxtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxnQkFBZ0I7RUFDaEIsV0FBVztFQUNYLGNBQWM7RUFDZCxrQkFBa0I7QUFDcEI7O0FBRUE7Ozs7OztFQU1FLDBEQUEwRDtBQUM1RDs7QUFFQTtFQUNFLG1CQUFtQjtFQUNuQixhQUFhO0VBQ2IsU0FBUztFQUNULDBFQUEwRTtBQUM1RTs7QUFFQTtFQUNFLGNBQWM7RUFDZCxlQUFlO0VBQ2YsZ0JBQWdCO0VBQ2hCLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixjQUFjO0VBQ2QsZUFBZTtFQUNmLGdCQUFnQjtBQUNsQjs7QUFFQTtFQUNFLDhCQUE4QjtFQUM5QixnQkFBZ0I7RUFDaEIsZUFBZTtFQUNmLFVBQVU7RUFDVixXQUFXO0FBQ2I7O0FBRUE7Ozs7O0VBS0UsV0FBVztFQUNYLHNCQUFzQjtFQUN0QixnQkFBZ0I7RUFDaEIsZUFBZTtFQUNmLGFBQWE7QUFDZjs7QUFFQTs7Ozs7RUFPRSx5Q0FBeUM7RUFDekMsc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UsYUFBYTtFQUNiLGVBQWU7RUFDZixZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxlQUFlO0VBQ2YsV0FBVztFQUNYLFlBQVk7RUFDWixtQkFBbUI7RUFDbkIsV0FBVztFQUNYLGVBQWU7RUFDZixhQUFhO0VBQ2IsZUFBZTtBQUNqQjs7QUFFQTtFQUNFLG1CQUFtQjtFQUNuQiw2Q0FBNkM7QUFDL0M7O0FBRUE7RUFDRSw4Q0FBOEM7QUFDaEQ7O0FBRUE7RUFDRSxrQkFBa0I7QUFDcEI7O0FBRUE7O0VBRUUsVUFBVTtFQUNWLHNCQUFzQjtBQUN4Qjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFFQTtFQUNFLFdBQVc7QUFDYiIsImZpbGUiOiJzcmMvYXBwL2NsZWFuLWNpdHktaG9tZS9jbGVhbi1jaXR5LWhvbWUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5ob21lLXdyYXBwZXJ7XHJcbiAgICB3aWR0aDogMTAwJTtcclxuICAgIGhlaWdodDogY2FsYygxMDB2aCAtIDYwcHgpO1xyXG4gICAgbWFyZ2luOiBhdXRvO1xyXG4gICAgb3ZlcmZsb3cteTogc2Nyb2xsO1xyXG59XHJcblxyXG5ib2R5IHtcclxuICBmb250LWZhbWlseTogXCJSb2JvdG9cIiwgSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZjtcclxuICBmb250LXdlaWdodDogMTAwO1xyXG4gIGZvbnQtc2l6ZTogMTJweDtcclxuICBsaW5lLWhlaWdodDogMzBweDtcclxuICBjb2xvcjogIzc3NztcclxuICBiYWNrZ3JvdW5kOiAjNENBRjUwO1xyXG59XHJcblxyXG4uY29udGFpbmVyIHtcclxuICBtYXgtd2lkdGg6IDQwMHB4O1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIG1hcmdpbjogMCBhdXRvO1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG5cclxuI2NvbnRhY3QgaW5wdXRbdHlwZT1cInRleHRcIl0sXHJcbiNjb250YWN0IGlucHV0W3R5cGU9XCJlbWFpbFwiXSxcclxuI2NvbnRhY3QgaW5wdXRbdHlwZT1cInRlbFwiXSxcclxuI2NvbnRhY3QgaW5wdXRbdHlwZT1cInVybFwiXSxcclxuI2NvbnRhY3QgdGV4dGFyZWEsXHJcbiNjb250YWN0IGJ1dHRvblt0eXBlPVwic3VibWl0XCJdIHtcclxuICBmb250OiA0MDAgMTJweC8xNnB4IFwiUm9ib3RvXCIsIEhlbHZldGljYSwgQXJpYWwsIHNhbnMtc2VyaWY7XHJcbn1cclxuXHJcbiNjb250YWN0IHtcclxuICBiYWNrZ3JvdW5kOiAjRjlGOUY5O1xyXG4gIHBhZGRpbmc6IDI1cHg7XHJcbiAgbWFyZ2luOiAwO1xyXG4gIGJveC1zaGFkb3c6IDAgMCAyMHB4IDAgcmdiYSgwLCAwLCAwLCAwLjIpLCAwIDVweCA1cHggMCByZ2JhKDAsIDAsIDAsIDAuMjQpO1xyXG59XHJcblxyXG4jY29udGFjdCBoMyB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgZm9udC1zaXplOiAzMHB4O1xyXG4gIGZvbnQtd2VpZ2h0OiAzMDA7XHJcbiAgbWFyZ2luLWJvdHRvbTogMTBweDtcclxufVxyXG5cclxuI2NvbnRhY3QgaDQge1xyXG4gIG1hcmdpbjogNXB4IDAgMTVweDtcclxuICBkaXNwbGF5OiBibG9jaztcclxuICBmb250LXNpemU6IDEzcHg7XHJcbiAgZm9udC13ZWlnaHQ6IDQwMDtcclxufVxyXG5cclxuZmllbGRzZXQge1xyXG4gIGJvcmRlcjogbWVkaXVtIG5vbmUgIWltcG9ydGFudDtcclxuICBtYXJnaW46IDAgMCAxMHB4O1xyXG4gIG1pbi13aWR0aDogMTAwJTtcclxuICBwYWRkaW5nOiAwO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG59XHJcblxyXG4jY29udGFjdCBpbnB1dFt0eXBlPVwidGV4dFwiXSxcclxuI2NvbnRhY3QgaW5wdXRbdHlwZT1cImVtYWlsXCJdLFxyXG4jY29udGFjdCBpbnB1dFt0eXBlPVwidGVsXCJdLFxyXG4jY29udGFjdCBpbnB1dFt0eXBlPVwidXJsXCJdLFxyXG4jY29udGFjdCB0ZXh0YXJlYSB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgI2NjYztcclxuICBiYWNrZ3JvdW5kOiAjRkZGO1xyXG4gIG1hcmdpbjogMCAwIDVweDtcclxuICBwYWRkaW5nOiAxMHB4O1xyXG59XHJcblxyXG4jY29udGFjdCBpbnB1dFt0eXBlPVwidGV4dFwiXTpob3ZlcixcclxuI2NvbnRhY3QgaW5wdXRbdHlwZT1cImVtYWlsXCJdOmhvdmVyLFxyXG4jY29udGFjdCBpbnB1dFt0eXBlPVwidGVsXCJdOmhvdmVyLFxyXG4jY29udGFjdCBpbnB1dFt0eXBlPVwidXJsXCJdOmhvdmVyLFxyXG4jY29udGFjdCB0ZXh0YXJlYTpob3ZlciB7XHJcbiAgLXdlYmtpdC10cmFuc2l0aW9uOiBib3JkZXItY29sb3IgMC4zcyBlYXNlLWluLW91dDtcclxuICAtbW96LXRyYW5zaXRpb246IGJvcmRlci1jb2xvciAwLjNzIGVhc2UtaW4tb3V0O1xyXG4gIHRyYW5zaXRpb246IGJvcmRlci1jb2xvciAwLjNzIGVhc2UtaW4tb3V0O1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkICNhYWE7XHJcbn1cclxuXHJcbiNjb250YWN0IHRleHRhcmVhIHtcclxuICBoZWlnaHQ6IDEwMHB4O1xyXG4gIG1heC13aWR0aDogMTAwJTtcclxuICByZXNpemU6IG5vbmU7XHJcbn1cclxuXHJcbiNjb250YWN0IGJ1dHRvblt0eXBlPVwic3VibWl0XCJdIHtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgYm9yZGVyOiBub25lO1xyXG4gIGJhY2tncm91bmQ6ICM0Q0FGNTA7XHJcbiAgY29sb3I6ICNGRkY7XHJcbiAgbWFyZ2luOiAwIDAgNXB4O1xyXG4gIHBhZGRpbmc6IDEwcHg7XHJcbiAgZm9udC1zaXplOiAxNXB4O1xyXG59XHJcblxyXG4jY29udGFjdCBidXR0b25bdHlwZT1cInN1Ym1pdFwiXTpob3ZlciB7XHJcbiAgYmFja2dyb3VuZDogIzQzQTA0NztcclxuICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kLWNvbG9yIDAuM3MgZWFzZS1pbi1vdXQ7XHJcbn1cclxuXHJcbiNjb250YWN0IGJ1dHRvblt0eXBlPVwic3VibWl0XCJdOmFjdGl2ZSB7XHJcbiAgYm94LXNoYWRvdzogaW5zZXQgMCAxcHggM3B4IHJnYmEoMCwgMCwgMCwgMC41KTtcclxufVxyXG5cclxuLmNvcHlyaWdodCB7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4jY29udGFjdCBpbnB1dDpmb2N1cyxcclxuI2NvbnRhY3QgdGV4dGFyZWE6Zm9jdXMge1xyXG4gIG91dGxpbmU6IDA7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgI2FhYTtcclxufVxyXG5cclxuOjotd2Via2l0LWlucHV0LXBsYWNlaG9sZGVyIHtcclxuICBjb2xvcjogIzg4ODtcclxufVxyXG5cclxuOi1tb3otcGxhY2Vob2xkZXIge1xyXG4gIGNvbG9yOiAjODg4O1xyXG59XHJcblxyXG46Oi1tb3otcGxhY2Vob2xkZXIge1xyXG4gIGNvbG9yOiAjODg4O1xyXG59XHJcblxyXG46LW1zLWlucHV0LXBsYWNlaG9sZGVyIHtcclxuICBjb2xvcjogIzg4ODtcclxufSJdfQ== */"
 
 /***/ }),
 
@@ -690,7 +714,7 @@ module.exports = ".home-wrapper{\r\n    width: 100%;\r\n    height: calc(100vh -
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-sm bg-dark navbar-dark\">\n  <ul class=\"navbar-nav\">\n    <li class=\"nav-item active\">\n      <a class=\"nav-link\" routerLink=\"/home\" routerLinkActive=\"active\">Waste Bins</a>\n    </li>\n    <li class=\"nav-item\">\n      <a class=\"nav-link\" routerLink=\"/users\" routerLinkActive=\"active\">Users</a>\n    </li>\n  </ul>\n</nav>\n\n<div class=\"home-wrapper\">\n  <div class=\"bin-table-wrapper\">\n    <table class=\"table table-hover\">\n      <thead>\n        <tr>\n          <th scope=\"col\">#</th>\n          <th scope=\"col\">Location</th>\n          <th scope=\"col\">Pin Code</th>\n          <th scope=\"col\">Status</th>\n          <th scope=\"col\">Capacity</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let bin of binList; index as i\" (click)=\"openGraphModal(content, bin)\">\n          <th scope=\"row\">{{i + 1}}</th>\n          <td>{{bin.addressLine3}}</td>\n          <td>{{bin.pincode}}</td>\n          <td>{{bin.flag}}</td>\n          <td>{{bin.binCurrentCapacity}}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<ng-template #content let-modal>\n  <div class=\"modal-header\">\n    <h5 class=\"modal-title\" id=\"modal-basic-title\">Bin Report Graph</h5>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"modal.dismiss('Cross click')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-header\">\n    <h6 class=\"modal-title\" id=\"modal-basic-title\">{{binForModal.addressLine3}}</h6>\n  </div>\n  <div class=\"modal-body\">\n    <app-city-graph [binDetail]=\"binForModal\"></app-city-graph>\n  </div>\n  <div class=\"modal-footer\"></div>\n</ng-template>"
+module.exports = "<div class=\"home-wrapper\">\n  <div class=\"bin-table-wrapper\">\n    <table class=\"table table-hover\">\n      <thead>\n        <tr>\n          <th scope=\"col\">\n            <i class=\"fa fa-plus\" routerLink=\"/maps\" routerLinkActive=\"active\" aria-hidden=\"true\"></i>\n          </th>\n          <th scope=\"col\">Location</th>\n          <th scope=\"col\">Pin Code</th>\n          <th scope=\"col\">Status</th>\n          <th scope=\"col\">Capacity</th>\n          <th scope=\"col\">Actions</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let bin of binList; index as i\">\n          <th scope=\"row\">{{i + 1}}</th>\n          <td>{{bin.addressLine3}}</td>\n          <td>{{bin.pincode}}</td>\n          <td>{{bin.flag}}</td>\n          <td>{{bin.binCurrentCapacity}}</td>\n          <th scope=\"col\">\n            <button class=\"btn btn-primary\" style=\"margin-right:5px;\" (click)=\"openEditModal(bin)\">Edit</button>\n            <button class=\"btn btn-success\" style=\"margin-right:5px;\" (click)=\"openGraphModal(content, bin)\">View\n              Status</button>\n            <button class=\"btn btn-danger\" style=\"margin-right:5px;\" (click)=\"deleteBin(bin)\">Delete Bin</button>\n          </th>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n\n<ng-template #content let-modal>\n  <div class=\"modal-header\">\n    <h5 class=\"modal-title\" id=\"modal-basic-title\">Bin Report Graph</h5>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"modal.dismiss('Cross click')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-header\">\n    <h6 class=\"modal-title\" id=\"modal-basic-title\">{{binForModal.addressLine3}}</h6>\n  </div>\n  <div class=\"modal-body\">\n    <app-city-graph [binDetail]=\"binForModal\"></app-city-graph>\n  </div>\n  <div class=\"modal-footer\"></div>\n</ng-template>"
 
 /***/ }),
 
@@ -708,6 +732,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
 /* harmony import */ var _common_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../common.service */ "./src/app/common.service.ts");
+/* harmony import */ var _create_bin_create_bin_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../create-bin/create-bin.component */ "./src/app/create-bin/create-bin.component.ts");
+
 
 
 
@@ -717,6 +743,8 @@ var CleanCityHomeComponent = /** @class */ (function () {
         this.modalService = modalService;
         this.commonService = commonService;
         this.binList = Array();
+        this.lat = 10.016237;
+        this.lng = 76.676647;
     }
     CleanCityHomeComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -731,6 +759,19 @@ var CleanCityHomeComponent = /** @class */ (function () {
             size: 'lg'
         }).result.then(function (result) {
         }, function (reason) {
+        });
+    };
+    CleanCityHomeComponent.prototype.openEditModal = function (binData) {
+        this.commonService.createBinData = binData;
+        this.modalService.open(_create_bin_create_bin_component__WEBPACK_IMPORTED_MODULE_4__["CreateBinComponent"], {
+            ariaLabelledBy: 'modal-basic-title',
+            size: 'lg'
+        }).result.then(function (result) {
+        }, function (reason) {
+        });
+    };
+    CleanCityHomeComponent.prototype.deleteBin = function (binData) {
+        this.commonService.deleteBin(binData.id).subscribe(function (data) {
         });
     };
     CleanCityHomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -802,6 +843,15 @@ var CommonService = /** @class */ (function () {
     CommonService.prototype.getBinTrackByBinId = function (binId) {
         return this.http.get('/api/bin/bintrack/' + binId);
     };
+    CommonService.prototype.createNewBin = function (binData) {
+        return this.http.post('/api/bin', binData);
+    };
+    CommonService.prototype.updateNewBin = function (binData) {
+        return this.http.put('/api/bin', binData);
+    };
+    CommonService.prototype.deleteBin = function (id) {
+        return this.http.delete('/api/bin/' + id);
+    };
     CommonService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
@@ -810,6 +860,231 @@ var CommonService = /** @class */ (function () {
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], CommonService);
     return CommonService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/create-bin/create-bin.component.css":
+/*!*****************************************************!*\
+  !*** ./src/app/create-bin/create-bin.component.css ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".home-wrapper{\r\n    width: 100%;\r\n    height: calc(100vh - 60px);\r\n    border: 1px solid #333;\r\n    margin: auto;\r\n}\r\n\r\n.createContainer{\r\n    height: 200px;\r\n    widows: 200px;\r\n}\r\n\r\nbody {\r\n  font-family: \"Roboto\", Helvetica, Arial, sans-serif;\r\n  font-weight: 100;\r\n  font-size: 12px;\r\n  line-height: 30px;\r\n  color: #777;\r\n  background: #4CAF50;\r\n}\r\n\r\n.container {\r\n  max-width: 400px;\r\n  width: 100%;\r\n  margin: 0 auto;\r\n  position: relative;\r\n}\r\n\r\n#contact input[type=\"text\"],\r\n#contact input[type=\"email\"],\r\n#contact input[type=\"tel\"],\r\n#contact input[type=\"url\"],\r\n#contact textarea,\r\n#contact button[type=\"submit\"] {\r\n  font: 400 12px/16px \"Roboto\", Helvetica, Arial, sans-serif;\r\n}\r\n\r\n#contact {\r\n  background: #F9F9F9;\r\n  padding: 25px;\r\n  margin: 0;\r\n  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);\r\n}\r\n\r\n#contact h3 {\r\n  display: block;\r\n  font-size: 30px;\r\n  font-weight: 300;\r\n  margin-bottom: 10px;\r\n}\r\n\r\n#contact h4 {\r\n  margin: 5px 0 15px;\r\n  display: block;\r\n  font-size: 13px;\r\n  font-weight: 400;\r\n}\r\n\r\nfieldset {\r\n  border: medium none !important;\r\n  margin: 0 0 10px;\r\n  min-width: 100%;\r\n  padding: 0;\r\n  width: 100%;\r\n}\r\n\r\n#contact input[type=\"text\"],\r\n#contact input[type=\"email\"],\r\n#contact input[type=\"tel\"],\r\n#contact input[type=\"url\"],\r\n#contact textarea {\r\n  width: 100%;\r\n  border: 1px solid #ccc;\r\n  background: #FFF;\r\n  margin: 0 0 5px;\r\n  padding: 10px;\r\n}\r\n\r\n#contact input[type=\"text\"]:hover,\r\n#contact input[type=\"email\"]:hover,\r\n#contact input[type=\"tel\"]:hover,\r\n#contact input[type=\"url\"]:hover,\r\n#contact textarea:hover {\r\n  transition: border-color 0.3s ease-in-out;\r\n  border: 1px solid #aaa;\r\n}\r\n\r\n#contact textarea {\r\n  height: 100px;\r\n  max-width: 100%;\r\n  resize: none;\r\n}\r\n\r\n#contact button[type=\"submit\"] {\r\n  cursor: pointer;\r\n  width: 100%;\r\n  border: none;\r\n  background: #4CAF50;\r\n  color: #FFF;\r\n  margin: 0 0 5px;\r\n  padding: 10px;\r\n  font-size: 15px;\r\n}\r\n\r\n#contact button[type=\"submit\"]:hover {\r\n  background: #43A047;\r\n  transition: background-color 0.3s ease-in-out;\r\n}\r\n\r\n#contact button[type=\"submit\"]:active {\r\n  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);\r\n}\r\n\r\n.copyright {\r\n  text-align: center;\r\n}\r\n\r\n#contact input:focus,\r\n#contact textarea:focus {\r\n  outline: 0;\r\n  border: 1px solid #aaa;\r\n}\r\n\r\n::-webkit-input-placeholder {\r\n  color: #888;\r\n}\r\n\r\n:-moz-placeholder {\r\n  color: #888;\r\n}\r\n\r\n::-moz-placeholder {\r\n  color: #888;\r\n}\r\n\r\n:-ms-input-placeholder {\r\n  color: #888;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY3JlYXRlLWJpbi9jcmVhdGUtYmluLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxXQUFXO0lBQ1gsMEJBQTBCO0lBQzFCLHNCQUFzQjtJQUN0QixZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksYUFBYTtJQUNiLGFBQWE7QUFDakI7O0FBRUE7RUFDRSxtREFBbUQ7RUFDbkQsZ0JBQWdCO0VBQ2hCLGVBQWU7RUFDZixpQkFBaUI7RUFDakIsV0FBVztFQUNYLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLGdCQUFnQjtFQUNoQixXQUFXO0VBQ1gsY0FBYztFQUNkLGtCQUFrQjtBQUNwQjs7QUFFQTs7Ozs7O0VBTUUsMERBQTBEO0FBQzVEOztBQUVBO0VBQ0UsbUJBQW1CO0VBQ25CLGFBQWE7RUFDYixTQUFTO0VBQ1QsMEVBQTBFO0FBQzVFOztBQUVBO0VBQ0UsY0FBYztFQUNkLGVBQWU7RUFDZixnQkFBZ0I7RUFDaEIsbUJBQW1CO0FBQ3JCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLGNBQWM7RUFDZCxlQUFlO0VBQ2YsZ0JBQWdCO0FBQ2xCOztBQUVBO0VBQ0UsOEJBQThCO0VBQzlCLGdCQUFnQjtFQUNoQixlQUFlO0VBQ2YsVUFBVTtFQUNWLFdBQVc7QUFDYjs7QUFFQTs7Ozs7RUFLRSxXQUFXO0VBQ1gsc0JBQXNCO0VBQ3RCLGdCQUFnQjtFQUNoQixlQUFlO0VBQ2YsYUFBYTtBQUNmOztBQUVBOzs7OztFQU9FLHlDQUF5QztFQUN6QyxzQkFBc0I7QUFDeEI7O0FBRUE7RUFDRSxhQUFhO0VBQ2IsZUFBZTtFQUNmLFlBQVk7QUFDZDs7QUFFQTtFQUNFLGVBQWU7RUFDZixXQUFXO0VBQ1gsWUFBWTtFQUNaLG1CQUFtQjtFQUNuQixXQUFXO0VBQ1gsZUFBZTtFQUNmLGFBQWE7RUFDYixlQUFlO0FBQ2pCOztBQUVBO0VBQ0UsbUJBQW1CO0VBQ25CLDZDQUE2QztBQUMvQzs7QUFFQTtFQUNFLDhDQUE4QztBQUNoRDs7QUFFQTtFQUNFLGtCQUFrQjtBQUNwQjs7QUFFQTs7RUFFRSxVQUFVO0VBQ1Ysc0JBQXNCO0FBQ3hCOztBQUVBO0VBQ0UsV0FBVztBQUNiOztBQUVBO0VBQ0UsV0FBVztBQUNiOztBQUVBO0VBQ0UsV0FBVztBQUNiOztBQUVBO0VBQ0UsV0FBVztBQUNiIiwiZmlsZSI6InNyYy9hcHAvY3JlYXRlLWJpbi9jcmVhdGUtYmluLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuaG9tZS13cmFwcGVye1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBoZWlnaHQ6IGNhbGMoMTAwdmggLSA2MHB4KTtcclxuICAgIGJvcmRlcjogMXB4IHNvbGlkICMzMzM7XHJcbiAgICBtYXJnaW46IGF1dG87XHJcbn1cclxuXHJcbi5jcmVhdGVDb250YWluZXJ7XHJcbiAgICBoZWlnaHQ6IDIwMHB4O1xyXG4gICAgd2lkb3dzOiAyMDBweDtcclxufVxyXG5cclxuYm9keSB7XHJcbiAgZm9udC1mYW1pbHk6IFwiUm9ib3RvXCIsIEhlbHZldGljYSwgQXJpYWwsIHNhbnMtc2VyaWY7XHJcbiAgZm9udC13ZWlnaHQ6IDEwMDtcclxuICBmb250LXNpemU6IDEycHg7XHJcbiAgbGluZS1oZWlnaHQ6IDMwcHg7XHJcbiAgY29sb3I6ICM3Nzc7XHJcbiAgYmFja2dyb3VuZDogIzRDQUY1MDtcclxufVxyXG5cclxuLmNvbnRhaW5lciB7XHJcbiAgbWF4LXdpZHRoOiA0MDBweDtcclxuICB3aWR0aDogMTAwJTtcclxuICBtYXJnaW46IDAgYXV0bztcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbn1cclxuXHJcbiNjb250YWN0IGlucHV0W3R5cGU9XCJ0ZXh0XCJdLFxyXG4jY29udGFjdCBpbnB1dFt0eXBlPVwiZW1haWxcIl0sXHJcbiNjb250YWN0IGlucHV0W3R5cGU9XCJ0ZWxcIl0sXHJcbiNjb250YWN0IGlucHV0W3R5cGU9XCJ1cmxcIl0sXHJcbiNjb250YWN0IHRleHRhcmVhLFxyXG4jY29udGFjdCBidXR0b25bdHlwZT1cInN1Ym1pdFwiXSB7XHJcbiAgZm9udDogNDAwIDEycHgvMTZweCBcIlJvYm90b1wiLCBIZWx2ZXRpY2EsIEFyaWFsLCBzYW5zLXNlcmlmO1xyXG59XHJcblxyXG4jY29udGFjdCB7XHJcbiAgYmFja2dyb3VuZDogI0Y5RjlGOTtcclxuICBwYWRkaW5nOiAyNXB4O1xyXG4gIG1hcmdpbjogMDtcclxuICBib3gtc2hhZG93OiAwIDAgMjBweCAwIHJnYmEoMCwgMCwgMCwgMC4yKSwgMCA1cHggNXB4IDAgcmdiYSgwLCAwLCAwLCAwLjI0KTtcclxufVxyXG5cclxuI2NvbnRhY3QgaDMge1xyXG4gIGRpc3BsYXk6IGJsb2NrO1xyXG4gIGZvbnQtc2l6ZTogMzBweDtcclxuICBmb250LXdlaWdodDogMzAwO1xyXG4gIG1hcmdpbi1ib3R0b206IDEwcHg7XHJcbn1cclxuXHJcbiNjb250YWN0IGg0IHtcclxuICBtYXJnaW46IDVweCAwIDE1cHg7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgZm9udC1zaXplOiAxM3B4O1xyXG4gIGZvbnQtd2VpZ2h0OiA0MDA7XHJcbn1cclxuXHJcbmZpZWxkc2V0IHtcclxuICBib3JkZXI6IG1lZGl1bSBub25lICFpbXBvcnRhbnQ7XHJcbiAgbWFyZ2luOiAwIDAgMTBweDtcclxuICBtaW4td2lkdGg6IDEwMCU7XHJcbiAgcGFkZGluZzogMDtcclxuICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxuI2NvbnRhY3QgaW5wdXRbdHlwZT1cInRleHRcIl0sXHJcbiNjb250YWN0IGlucHV0W3R5cGU9XCJlbWFpbFwiXSxcclxuI2NvbnRhY3QgaW5wdXRbdHlwZT1cInRlbFwiXSxcclxuI2NvbnRhY3QgaW5wdXRbdHlwZT1cInVybFwiXSxcclxuI2NvbnRhY3QgdGV4dGFyZWEge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkICNjY2M7XHJcbiAgYmFja2dyb3VuZDogI0ZGRjtcclxuICBtYXJnaW46IDAgMCA1cHg7XHJcbiAgcGFkZGluZzogMTBweDtcclxufVxyXG5cclxuI2NvbnRhY3QgaW5wdXRbdHlwZT1cInRleHRcIl06aG92ZXIsXHJcbiNjb250YWN0IGlucHV0W3R5cGU9XCJlbWFpbFwiXTpob3ZlcixcclxuI2NvbnRhY3QgaW5wdXRbdHlwZT1cInRlbFwiXTpob3ZlcixcclxuI2NvbnRhY3QgaW5wdXRbdHlwZT1cInVybFwiXTpob3ZlcixcclxuI2NvbnRhY3QgdGV4dGFyZWE6aG92ZXIge1xyXG4gIC13ZWJraXQtdHJhbnNpdGlvbjogYm9yZGVyLWNvbG9yIDAuM3MgZWFzZS1pbi1vdXQ7XHJcbiAgLW1vei10cmFuc2l0aW9uOiBib3JkZXItY29sb3IgMC4zcyBlYXNlLWluLW91dDtcclxuICB0cmFuc2l0aW9uOiBib3JkZXItY29sb3IgMC4zcyBlYXNlLWluLW91dDtcclxuICBib3JkZXI6IDFweCBzb2xpZCAjYWFhO1xyXG59XHJcblxyXG4jY29udGFjdCB0ZXh0YXJlYSB7XHJcbiAgaGVpZ2h0OiAxMDBweDtcclxuICBtYXgtd2lkdGg6IDEwMCU7XHJcbiAgcmVzaXplOiBub25lO1xyXG59XHJcblxyXG4jY29udGFjdCBidXR0b25bdHlwZT1cInN1Ym1pdFwiXSB7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGJvcmRlcjogbm9uZTtcclxuICBiYWNrZ3JvdW5kOiAjNENBRjUwO1xyXG4gIGNvbG9yOiAjRkZGO1xyXG4gIG1hcmdpbjogMCAwIDVweDtcclxuICBwYWRkaW5nOiAxMHB4O1xyXG4gIGZvbnQtc2l6ZTogMTVweDtcclxufVxyXG5cclxuI2NvbnRhY3QgYnV0dG9uW3R5cGU9XCJzdWJtaXRcIl06aG92ZXIge1xyXG4gIGJhY2tncm91bmQ6ICM0M0EwNDc7XHJcbiAgdHJhbnNpdGlvbjogYmFja2dyb3VuZC1jb2xvciAwLjNzIGVhc2UtaW4tb3V0O1xyXG59XHJcblxyXG4jY29udGFjdCBidXR0b25bdHlwZT1cInN1Ym1pdFwiXTphY3RpdmUge1xyXG4gIGJveC1zaGFkb3c6IGluc2V0IDAgMXB4IDNweCByZ2JhKDAsIDAsIDAsIDAuNSk7XHJcbn1cclxuXHJcbi5jb3B5cmlnaHQge1xyXG4gIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuI2NvbnRhY3QgaW5wdXQ6Zm9jdXMsXHJcbiNjb250YWN0IHRleHRhcmVhOmZvY3VzIHtcclxuICBvdXRsaW5lOiAwO1xyXG4gIGJvcmRlcjogMXB4IHNvbGlkICNhYWE7XHJcbn1cclxuXHJcbjo6LXdlYmtpdC1pbnB1dC1wbGFjZWhvbGRlciB7XHJcbiAgY29sb3I6ICM4ODg7XHJcbn1cclxuXHJcbjotbW96LXBsYWNlaG9sZGVyIHtcclxuICBjb2xvcjogIzg4ODtcclxufVxyXG5cclxuOjotbW96LXBsYWNlaG9sZGVyIHtcclxuICBjb2xvcjogIzg4ODtcclxufVxyXG5cclxuOi1tcy1pbnB1dC1wbGFjZWhvbGRlciB7XHJcbiAgY29sb3I6ICM4ODg7XHJcbn0iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/create-bin/create-bin.component.html":
+/*!******************************************************!*\
+  !*** ./src/app/create-bin/create-bin.component.html ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<form [formGroup]=\"formGroup\" (ngSubmit)=\"addBinFormSubmit()\" novalidate id=\"contact\">\n  <fieldset>\n    <input formControlName=\"binCurrentCapacity\" placeholder=\"Bincapcity\" type=\"number\" tabindex=\"1\" required autofocus>\n  </fieldset>\n  <fieldset>\n    <input formControlName=\"addressLine1\" placeholder=\"Address Line 1\" type=\"text\" tabindex=\"1\" required autofocus>\n  </fieldset>\n  <fieldset>\n    <input formControlName=\"addressLine2\" placeholder=\"Address Line 2\" type=\"text\" tabindex=\"1\" required autofocus>\n  </fieldset>\n  <fieldset>\n    <input formControlName=\"addressLine3\" placeholder=\"Address Line 3\" type=\"text\" tabindex=\"1\" required autofocus>\n  </fieldset>\n  <fieldset>\n    <input formControlName=\"pincode\" placeholder=\"Pin code\" type=\"number\" tabindex=\"1\" required autofocus>\n  </fieldset>\n  <fieldset>\n    <input formControlName=\"latitude\" placeholder=\"Latitude\" type=\"text\" tabindex=\"1\" required autofocus>\n  </fieldset>\n  <fieldset>\n    <input formControlName=\"longitude\" placeholder=\"longitude\" type=\"text\" tabindex=\"1\" required autofocus>\n  </fieldset>\n  <fieldset>\n    <input formControlName=\"flag\" placeholder=\"Status\" type=\"number\" tabindex=\"1\" required autofocus>\n  </fieldset>\n  <button type=\"submit\">Save</button>\n</form>"
+
+/***/ }),
+
+/***/ "./src/app/create-bin/create-bin.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/create-bin/create-bin.component.ts ***!
+  \****************************************************/
+/*! exports provided: CreateBinComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateBinComponent", function() { return CreateBinComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _common_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../common.service */ "./src/app/common.service.ts");
+
+
+
+
+
+
+var CreateBinComponent = /** @class */ (function () {
+    function CreateBinComponent(modalService, router, commonService) {
+        this.modalService = modalService;
+        this.router = router;
+        this.commonService = commonService;
+    }
+    CreateBinComponent.prototype.ngOnInit = function () {
+        this.createFormControls();
+        this.createFormGroup();
+        if (this.commonService.createBinData) {
+            this.id.setValue(this.commonService.createBinData.id);
+            this.binCurrentCapacity.setValue(this.commonService.createBinData.binCurrentCapacity);
+            this.addressLine1.setValue(this.commonService.createBinData.addressLine1);
+            this.addressLine2.setValue(this.commonService.createBinData.addressLine2);
+            this.addressLine3.setValue(this.commonService.createBinData.addressLine3);
+            this.pincode.setValue(this.commonService.createBinData.pincode);
+            this.latitude.setValue(this.commonService.createBinData.latitude);
+            this.longitude.setValue(this.commonService.createBinData.longitude);
+            this.flag.setValue(this.commonService.createBinData.flag);
+        }
+    };
+    CreateBinComponent.prototype.createFormControls = function () {
+        this.id = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('');
+        this.binCurrentCapacity = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('');
+        this.addressLine1 = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('');
+        this.addressLine2 = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('');
+        this.addressLine3 = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('');
+        this.pincode = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('');
+        this.latitude = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('');
+        this.longitude = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('');
+        this.flag = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]('');
+    };
+    CreateBinComponent.prototype.createFormGroup = function () {
+        this.formGroup = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormGroup"]({
+            id: this.id,
+            binCurrentCapacity: this.binCurrentCapacity,
+            addressLine1: this.addressLine1,
+            addressLine2: this.addressLine2,
+            addressLine3: this.addressLine3,
+            pincode: this.pincode,
+            latitude: this.latitude,
+            longitude: this.longitude,
+            flag: this.flag
+        });
+    };
+    CreateBinComponent.prototype.addBinFormSubmit = function () {
+        var _this = this;
+        if (this.formGroup.valid) {
+            this.commonService.createNewBin(this.formGroup.value).subscribe(function (data) {
+                _this.commonService.createBinData = data;
+                _this.modalService.dismissAll();
+            });
+        }
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('contentAddBin'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], CreateBinComponent.prototype, "modalElement", void 0);
+    CreateBinComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-create-bin',
+            template: __webpack_require__(/*! ./create-bin.component.html */ "./src/app/create-bin/create-bin.component.html"),
+            styles: [__webpack_require__(/*! ./create-bin.component.css */ "./src/app/create-bin/create-bin.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbModal"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+            _common_service__WEBPACK_IMPORTED_MODULE_5__["CommonService"]])
+    ], CreateBinComponent);
+    return CreateBinComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/google-maps/google-maps.component.css":
+/*!*******************************************************!*\
+  !*** ./src/app/google-maps/google-maps.component.css ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "agm-map{\r\n    margin: auto;\r\n    height: 600px;\r\n  }\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvZ29vZ2xlLW1hcHMvZ29vZ2xlLW1hcHMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFlBQVk7SUFDWixhQUFhO0VBQ2YiLCJmaWxlIjoic3JjL2FwcC9nb29nbGUtbWFwcy9nb29nbGUtbWFwcy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiYWdtLW1hcHtcclxuICAgIG1hcmdpbjogYXV0bztcclxuICAgIGhlaWdodDogNjAwcHg7XHJcbiAgfSJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/google-maps/google-maps.component.html":
+/*!********************************************************!*\
+  !*** ./src/app/google-maps/google-maps.component.html ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<agm-map #myGoogleMapEle [latitude]=\"lat\" (click)=\"leftButtonClick($event)\" (mapRightClick)=\"rightButtonClick($event)\"\n  [longitude]=\"lng\" [fitBounds]=\"true\">\n  <agm-marker *ngFor=\"let bin of binLocations\" [latitude]=\"bin.latitude\" [longitude]=\"bin.longitude\"\n    [agmFitBounds]=\"true\">\n  </agm-marker>\n</agm-map>"
+
+/***/ }),
+
+/***/ "./src/app/google-maps/google-maps.component.ts":
+/*!******************************************************!*\
+  !*** ./src/app/google-maps/google-maps.component.ts ***!
+  \******************************************************/
+/*! exports provided: GoogleMapsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "GoogleMapsComponent", function() { return GoogleMapsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _common_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../common.service */ "./src/app/common.service.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _create_bin_create_bin_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../create-bin/create-bin.component */ "./src/app/create-bin/create-bin.component.ts");
+/* harmony import */ var _models_WasteBin__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../models/WasteBin */ "./src/app/models/WasteBin.ts");
+
+
+
+
+
+
+var GoogleMapsComponent = /** @class */ (function () {
+    function GoogleMapsComponent(commonService, modalService) {
+        this.commonService = commonService;
+        this.modalService = modalService;
+        this.binLocations = Array();
+        this.lat = 10.001240;
+        this.lng = 76.683964;
+    }
+    GoogleMapsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.commonService.getAllBinDetails().subscribe(function (allBins) {
+            allBins.forEach(function (element) {
+                _this.binLocations.push(element);
+            });
+        });
+    };
+    GoogleMapsComponent.prototype.leftButtonClick = function (event) {
+        this.myGoogleMapEle;
+    };
+    GoogleMapsComponent.prototype.rightButtonClick = function (event) {
+        var binData = new _models_WasteBin__WEBPACK_IMPORTED_MODULE_5__["WasteBin"]();
+        binData.longitude = event.coords.lng;
+        binData.latitude = event.coords.lat;
+        this.commonService.createBinData = binData;
+        this.openAddBinModal();
+        return false;
+    };
+    GoogleMapsComponent.prototype.openAddBinModal = function () {
+        var _this = this;
+        this.modalService.open(_create_bin_create_bin_component__WEBPACK_IMPORTED_MODULE_4__["CreateBinComponent"], {
+            ariaLabelledBy: 'modal-basic-title',
+            size: 'lg'
+        }).result.then(function (result) {
+            if (result == 'save') {
+                _this.binLocations.push(_this.commonService.createBinData);
+            }
+            _this.modalService.dismissAll();
+        }, function (reason) {
+            _this.binLocations.push(_this.commonService.createBinData);
+            _this.modalService.dismissAll();
+        });
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('myGoogleMapEle'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], GoogleMapsComponent.prototype, "myGoogleMapEle", void 0);
+    GoogleMapsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-google-maps',
+            template: __webpack_require__(/*! ./google-maps.component.html */ "./src/app/google-maps/google-maps.component.html"),
+            styles: [__webpack_require__(/*! ./google-maps.component.css */ "./src/app/google-maps/google-maps.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_common_service__WEBPACK_IMPORTED_MODULE_2__["CommonService"],
+            _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_3__["NgbModal"]])
+    ], GoogleMapsComponent);
+    return GoogleMapsComponent;
 }());
 
 
@@ -884,6 +1159,26 @@ var LoginComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/models/WasteBin.ts":
+/*!************************************!*\
+  !*** ./src/app/models/WasteBin.ts ***!
+  \************************************/
+/*! exports provided: WasteBin */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "WasteBin", function() { return WasteBin; });
+var WasteBin = /** @class */ (function () {
+    function WasteBin() {
+    }
+    return WasteBin;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/users/users.component.css":
 /*!*******************************************!*\
   !*** ./src/app/users/users.component.css ***!
@@ -902,7 +1197,7 @@ module.exports = ".home-wrapper{\r\n    width: 100%;\r\n    height: calc(100vh -
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-sm bg-dark navbar-dark\">\n  <ul class=\"navbar-nav\">\n    <li class=\"nav-item\">\n      <a class=\"nav-link\" routerLink=\"/home\">Waste Bins</a>\n    </li>\n    <li class=\"nav-item active\">\n      <a class=\"nav-link\" routerLink=\"/users\" routerLinkActive=\"active\">Users</a>\n    </li>\n  </ul>\n</nav>\n\n<div class=\"home-wrapper\">\n  <div class=\"bin-table-wrapper\">\n    <table class=\"table table-hover\">\n      <thead>\n        <tr>\n          <th scope=\"col\">#</th>\n          <th scope=\"col\">Name</th>\n          <th scope=\"col\">Contact</th>\n          <th scope=\"col\">Bin Balance</th>\n          <th scope=\"col\">Last Usage</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let user of usersList; index as i\" (click)=\"openGraphModal(content, bin)\">\n          <th scope=\"row\">{{i + 1}}</th>\n          <td>{{user.name}}</td>\n          <td>{{user.phone}}</td>\n          <td>{{user.binCredit | currency:'INR'}}</td>\n          <td>{{user.createDate |  date:'short'}}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<ng-template #content let-modal>\n  <div class=\"modal-header\">\n    <h5 class=\"modal-title\" id=\"modal-basic-title\">Bin Weekly Report Graph</h5>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"modal.dismiss('Cross click')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-header\">\n    <h6 class=\"modal-title\" id=\"modal-basic-title\">{{binForModal.addressLine3}}</h6>\n  </div>\n  <div class=\"modal-body\">\n    <app-city-graph [binDetail]=\"binForModal\"></app-city-graph>\n  </div>\n  <div class=\"modal-footer\"></div>\n</ng-template>"
+module.exports = "<div class=\"home-wrapper\">\n  <div class=\"bin-table-wrapper\">\n    <table class=\"table table-hover\">\n      <thead>\n        <tr>\n          <th scope=\"col\">#</th>\n          <th scope=\"col\">Name</th>\n          <th scope=\"col\">Contact</th>\n          <th scope=\"col\">Bin Balance</th>\n          <th scope=\"col\">Last Usage</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let user of usersList; index as i\" (click)=\"openGraphModal(content, bin)\">\n          <th scope=\"row\">{{i + 1}}</th>\n          <td>{{user.name}}</td>\n          <td>{{user.phone}}</td>\n          <td>{{user.binCredit | currency:'INR'}}</td>\n          <td>{{user.createDate |  date:'short'}}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n\n<ng-template #content let-modal>\n  <div class=\"modal-header\">\n    <h5 class=\"modal-title\" id=\"modal-basic-title\">Bin Weekly Report Graph</h5>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"modal.dismiss('Cross click')\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-header\">\n    <h6 class=\"modal-title\" id=\"modal-basic-title\">{{binForModal.addressLine3}}</h6>\n  </div>\n  <div class=\"modal-body\">\n    <app-city-graph [binDetail]=\"binForModal\"></app-city-graph>\n  </div>\n  <div class=\"modal-footer\"></div>\n</ng-template>"
 
 /***/ }),
 

@@ -2,19 +2,20 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { WasteBin } from './models/WasteBin';
+import { CreateBinComponent } from './create-bin/create-bin.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
 
+  createBinData: WasteBin;
   userLoginData: any;
-
-  apiKey: string = 'AIzaSyCr8qgQC_waV6aPSgqM52YQ-1wdExSFeLY';
 
   constructor(
     private http: HttpClient,
-    private router: Router,
+    private router: Router
   ) { }
 
   userLogin(data1: any) {
@@ -52,9 +53,16 @@ export class CommonService {
     return this.http.get('/api/bin/bintrack/' + binId);
   }
 
-  getGoogleMap() {
-    return this.http.get(`https://maps.googleapis.com/maps/api/js?key=${this.apiKey}&callback=initMap`);
+  createNewBin(binData: WasteBin): Observable<WasteBin> {
+    return this.http.post<WasteBin>('/api/bin', binData);
   }
 
+  updateNewBin(binData: WasteBin): Observable<WasteBin> {
+    return this.http.put<WasteBin>('/api/bin', binData);
+  }
+
+  deleteBin(id: string): Observable<any> {
+    return this.http.delete('/api/bin/' + id);
+  }
 
 }

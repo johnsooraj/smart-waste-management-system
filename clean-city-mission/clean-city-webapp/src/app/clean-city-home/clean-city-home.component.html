@@ -1,40 +1,37 @@
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <ul class="navbar-nav">
-    <li class="nav-item active">
-      <a class="nav-link" routerLink="/home" routerLinkActive="active">Waste Bins</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/users" routerLinkActive="active">Users</a>
-    </li>
-  </ul>
-</nav>
-
 <div class="home-wrapper">
   <div class="bin-table-wrapper">
     <table class="table table-hover">
       <thead>
         <tr>
           <th scope="col">
-            <i class="fa fa-plus" aria-hidden="true" (click)="openAddBinModal(contentAddBin)"></i>
+            <i class="fa fa-plus" routerLink="/maps" routerLinkActive="active" aria-hidden="true"></i>
           </th>
           <th scope="col">Location</th>
           <th scope="col">Pin Code</th>
           <th scope="col">Status</th>
           <th scope="col">Capacity</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let bin of binList; index as i" (click)="openGraphModal(content, bin)">
+        <tr *ngFor="let bin of binList; index as i">
           <th scope="row">{{i + 1}}</th>
           <td>{{bin.addressLine3}}</td>
           <td>{{bin.pincode}}</td>
           <td>{{bin.flag}}</td>
           <td>{{bin.binCurrentCapacity}}</td>
+          <th scope="col">
+            <button class="btn btn-primary" style="margin-right:5px;" (click)="openEditModal(bin)">Edit</button>
+            <button class="btn btn-success" style="margin-right:5px;" (click)="openGraphModal(content, bin)">View
+              Status</button>
+            <button class="btn btn-danger" style="margin-right:5px;" (click)="deleteBin(bin)">Delete Bin</button>
+          </th>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
+
 
 <ng-template #content let-modal>
   <div class="modal-header">
@@ -50,37 +47,4 @@
     <app-city-graph [binDetail]="binForModal"></app-city-graph>
   </div>
   <div class="modal-footer"></div>
-</ng-template>
-
-<ng-template #contentAddBin let-modal>
-  <div class="modal-header">
-    <h5 class="modal-title" id="modal-basic-title">Add New Bin</h5>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <form id="contact" action="" method="post">
-      <fieldset>
-        <input placeholder="Your name" type="text" tabindex="1" required autofocus>
-      </fieldset>
-      <fieldset>
-        <input placeholder="Your Email Address" type="email" tabindex="2" required>
-      </fieldset>
-      <fieldset>
-        <input placeholder="Your Phone Number (optional)" type="tel" tabindex="3" required>
-      </fieldset>
-      <fieldset>
-        <input placeholder="Your Web Site (optional)" type="url" tabindex="4" required>
-      </fieldset>
-      <fieldset>
-        <textarea placeholder="Type your message here...." tabindex="5" required></textarea>
-      </fieldset>
-      <fieldset>
-        <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
-      </fieldset>
-    </form>
-  </div>
-  <div class="modal-footer">
-  </div>
 </ng-template>

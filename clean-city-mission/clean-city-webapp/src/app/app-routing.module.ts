@@ -5,12 +5,18 @@ import { CleanCityHomeComponent } from './clean-city-home/clean-city-home.compon
 import { CityGuard } from './city.guard';
 import { UsersComponent } from './users/users.component';
 import { GoogleMapsComponent } from './google-maps/google-maps.component';
+import { CreateBinComponent } from './create-bin/create-bin.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/maps',
     pathMatch: 'full'
+  },
+  {
+    path: 'compose',
+    component: CreateBinComponent,
+    outlet: 'popup'
   },
   {
     path: 'maps',

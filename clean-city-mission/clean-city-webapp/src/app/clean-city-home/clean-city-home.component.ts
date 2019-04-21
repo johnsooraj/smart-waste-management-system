@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CommonService } from '../common.service';
+import { CreateBinComponent } from '../create-bin/create-bin.component';
 
 @Component({
   selector: 'app-clean-city-home',
@@ -40,9 +41,10 @@ export class CleanCityHomeComponent implements OnInit {
       });
   }
 
-  openAddBinModal(content: any) {
+  openEditModal(binData: any) {
+    this.commonService.createBinData = binData;
     this.modalService.open(
-      content,
+      CreateBinComponent,
       {
         ariaLabelledBy: 'modal-basic-title',
         size: 'lg'
@@ -53,4 +55,9 @@ export class CleanCityHomeComponent implements OnInit {
       });
   }
 
+  deleteBin(binData: any) {
+    this.commonService.deleteBin(binData.id).subscribe((data) => {
+
+    });
+  }
 }
