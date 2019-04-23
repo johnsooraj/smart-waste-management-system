@@ -96,7 +96,7 @@ public class CustomAsyncTasks {
 				});
 
 				tapNotification.buildNotificationBody(
-						"f7e7oZfxl9s:APA91bFT_W9GrwEpHGyFPSyh3Ny8g8VhdIAGIOYaslzFKhtyWNLwXBkAuxhri6ao2s5iAauUScUttmY5FAX1FrMoSMUH2yCvTOE_hAU7FwCHhe69TlmqVsfdBmnLMEQriWAKGgWDsbRJ",
+						"cq5JSpx_bvE:APA91bEalqAgx71TVSjYogPb7UvVNx6AeyHL9q4wBsreO5laDsMmd9WjrAanCeSG-g-RHcavscL4QCii_o3N42Pue9d1OX-WUfUI1NmIBvFSgLZWGIK-p4Q1L_3BJFj-TRy3GiNqQ-oQ",
 						finalOrderOfBins);
 				if (tapNotification.sendNotification()) {
 				}
