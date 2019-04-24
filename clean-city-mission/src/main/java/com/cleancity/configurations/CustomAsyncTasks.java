@@ -75,7 +75,7 @@ public class CustomAsyncTasks {
 		Map<String, Double> fuzzyResultSet = new HashMap<String, Double>();
 		for (WasteBin wasteBin : largeTenBins) {
 			// only check for fuzzy logic if any of the bin is grater than 80%
-			if (wasteBin.getBinCurrentCapacity() > 80) {
+			if (wasteBin.getBinCurrentCapacity() > 60) {
 				logger.info("fuzzy input data count = " + largeTenBins.size());
 
 				logger.info("-> collecting information for fuzzy input id = " + wasteBin.getId());
